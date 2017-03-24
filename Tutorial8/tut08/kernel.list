@@ -1,0 +1,186 @@
+
+build/output.elf:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+00008000 <_start>:
+    8000:	ea06087d 	b	18a1fc <main>
+
+Disassembly of section .text:
+
+0018a0f0 <EnableJTAG>:
+  18a0f0:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  18a0f4:	e59f0064 	ldr	r0, [pc, #100]	; 18a160 <dowaitloop+0xc>
+  18a0f8:	e0211001 	eor	r1, r1, r1
+  18a0fc:	e5801000 	str	r1, [r0]
+  18a100:	eb000012 	bl	18a150 <dowait>
+  18a104:	e59f0058 	ldr	r0, [pc, #88]	; 18a164 <dowaitloop+0x10>
+  18a108:	e59f1058 	ldr	r1, [pc, #88]	; 18a168 <dowaitloop+0x14>
+  18a10c:	e5801000 	str	r1, [r0]
+  18a110:	eb00000e 	bl	18a150 <dowait>
+  18a114:	e0211001 	eor	r1, r1, r1
+  18a118:	e5801000 	str	r1, [r0]
+  18a11c:	e59f0048 	ldr	r0, [pc, #72]	; 18a16c <dowaitloop+0x18>
+  18a120:	e5901000 	ldr	r1, [r0]
+  18a124:	e3c11a07 	bic	r1, r1, #28672	; 0x7000
+  18a128:	e3811a02 	orr	r1, r1, #8192	; 0x2000
+  18a12c:	e5801000 	str	r1, [r0]
+  18a130:	e59f0038 	ldr	r0, [pc, #56]	; 18a170 <dowaitloop+0x1c>
+  18a134:	e5901000 	ldr	r1, [r0]
+  18a138:	e59f2034 	ldr	r2, [pc, #52]	; 18a174 <dowaitloop+0x20>
+  18a13c:	e1c11002 	bic	r1, r1, r2
+  18a140:	e59f2030 	ldr	r2, [pc, #48]	; 18a178 <dowaitloop+0x24>
+  18a144:	e1811002 	orr	r1, r1, r2
+  18a148:	e5801000 	str	r1, [r0]
+  18a14c:	e49df004 	pop	{pc}		; (ldr pc, [sp], #4)
+
+0018a150 <dowait>:
+  18a150:	e3a02f4b 	mov	r2, #300	; 0x12c
+
+0018a154 <dowaitloop>:
+  18a154:	e2522001 	subs	r2, r2, #1
+  18a158:	1afffffd 	bne	18a154 <dowaitloop>
+  18a15c:	e12fff1e 	bx	lr
+  18a160:	3f200094 	.word	0x3f200094
+  18a164:	3f200098 	.word	0x3f200098
+  18a168:	0bc00010 	.word	0x0bc00010
+  18a16c:	3f200000 	.word	0x3f200000
+  18a170:	3f200008 	.word	0x3f200008
+  18a174:	00e3ffc0 	.word	0x00e3ffc0
+  18a178:	0061b6c0 	.word	0x0061b6c0
+
+0018a17c <InitFrameBuffer>:
+  18a17c:	e59f2068 	ldr	r2, [pc, #104]	; 18a1ec <pointerWaitLoop$+0x1c>
+  18a180:	e59f3068 	ldr	r3, [pc, #104]	; 18a1f0 <pointerWaitLoop$+0x20>
+
+0018a184 <mBoxFullLoop$>:
+  18a184:	e5920018 	ldr	r0, [r2, #24]
+  18a188:	e3100102 	tst	r0, #-2147483648	; 0x80000000
+  18a18c:	1afffffc 	bne	18a184 <mBoxFullLoop$>
+  18a190:	e2830101 	add	r0, r3, #1073741824	; 0x40000000
+  18a194:	e3800008 	orr	r0, r0, #8
+  18a198:	e5820020 	str	r0, [r2, #32]
+
+0018a19c <mBoxEmptyLoop$>:
+  18a19c:	e5920018 	ldr	r0, [r2, #24]
+  18a1a0:	e3100101 	tst	r0, #1073741824	; 0x40000000
+  18a1a4:	1afffffc 	bne	18a19c <mBoxEmptyLoop$>
+  18a1a8:	e5920000 	ldr	r0, [r2]
+  18a1ac:	e200100f 	and	r1, r0, #15
+  18a1b0:	e3310008 	teq	r1, #8
+  18a1b4:	1afffff8 	bne	18a19c <mBoxEmptyLoop$>
+  18a1b8:	e59f0030 	ldr	r0, [pc, #48]	; 18a1f0 <pointerWaitLoop$+0x20>
+  18a1bc:	e5901004 	ldr	r1, [r0, #4]
+  18a1c0:	e3310102 	teq	r1, #-2147483648	; 0x80000000
+  18a1c4:	0a000001 	beq	18a1d0 <pointerWaitLoop$>
+  18a1c8:	13a00000 	movne	r0, #0
+  18a1cc:	112fff1e 	bxne	lr
+
+0018a1d0 <pointerWaitLoop$>:
+  18a1d0:	e59f001c 	ldr	r0, [pc, #28]	; 18a1f4 <pointerWaitLoop$+0x24>
+  18a1d4:	e5900000 	ldr	r0, [r0]
+  18a1d8:	e3300000 	teq	r0, #0
+  18a1dc:	0afffffb 	beq	18a1d0 <pointerWaitLoop$>
+  18a1e0:	e59f3010 	ldr	r3, [pc, #16]	; 18a1f8 <pointerWaitLoop$+0x28>
+  18a1e4:	e5830000 	str	r0, [r3]
+  18a1e8:	e12fff1e 	bx	lr
+  18a1ec:	3f00b880 	.word	0x3f00b880
+  18a1f0:	00009080 	.word	0x00009080
+  18a1f4:	000090cc 	.word	0x000090cc
+  18a1f8:	000090e0 	.word	0x000090e0
+
+0018a1fc <main>:
+  18a1fc:	e3a0d902 	mov	sp, #32768	; 0x8000
+  18a200:	ebffffba 	bl	18a0f0 <EnableJTAG>
+  18a204:	ebffffdc 	bl	18a17c <InitFrameBuffer>
+  18a208:	eb000004 	bl	18a220 <EraseScreen>
+  18a20c:	eb00001e 	bl	18a28c <drawPicture>
+  18a210:	e3a00000 	mov	r0, #0
+  18a214:	e3a01000 	mov	r1, #0
+  18a218:	eb00002e 	bl	18a2d8 <drawPicture2>
+
+0018a21c <haltLoop$>:
+  18a21c:	eafffffe 	b	18a21c <haltLoop$>
+
+0018a220 <EraseScreen>:
+  18a220:	e3a04000 	mov	r4, #0
+  18a224:	e3a05000 	mov	r5, #0
+  18a228:	e3a06000 	mov	r6, #0
+  18a22c:	e3a07b01 	mov	r7, #1024	; 0x400
+  18a230:	e3a08c03 	mov	r8, #768	; 0x300
+
+0018a234 <XLoop>:
+  18a234:	e1a00004 	mov	r0, r4
+  18a238:	e1a01005 	mov	r1, r5
+  18a23c:	e1a02006 	mov	r2, r6
+  18a240:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  18a244:	eb000008 	bl	18a26c <DrawPixel>
+  18a248:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  18a24c:	e2844001 	add	r4, r4, #1
+  18a250:	e1540007 	cmp	r4, r7
+  18a254:	bafffff6 	blt	18a234 <XLoop>
+  18a258:	e3a04000 	mov	r4, #0
+  18a25c:	e2855001 	add	r5, r5, #1
+  18a260:	e1550008 	cmp	r5, r8
+  18a264:	bafffff2 	blt	18a234 <XLoop>
+  18a268:	e1a0f00e 	mov	pc, lr
+
+0018a26c <DrawPixel>:
+  18a26c:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
+  18a270:	e0804501 	add	r4, r0, r1, lsl #10
+  18a274:	e1a04084 	lsl	r4, r4, #1
+  18a278:	e59f00a4 	ldr	r0, [pc, #164]	; 18a324 <drawPictureLoop2+0x34>
+  18a27c:	e5900000 	ldr	r0, [r0]
+  18a280:	e18020b4 	strh	r2, [r0, r4]
+  18a284:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
+  18a288:	e12fff1e 	bx	lr
+
+0018a28c <drawPicture>:
+  18a28c:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  18a290:	e3a04000 	mov	r4, #0
+  18a294:	e3a05000 	mov	r5, #0
+  18a298:	e59f6088 	ldr	r6, [pc, #136]	; 18a328 <drawPictureLoop2+0x38>
+  18a29c:	e3a07b01 	mov	r7, #1024	; 0x400
+  18a2a0:	e3a08c03 	mov	r8, #768	; 0x300
+
+0018a2a4 <drawPictureLoop>:
+  18a2a4:	e1a00004 	mov	r0, r4
+  18a2a8:	e1a01005 	mov	r1, r5
+  18a2ac:	e0d620b2 	ldrh	r2, [r6], #2
+  18a2b0:	ebffffed 	bl	18a26c <DrawPixel>
+  18a2b4:	e2844001 	add	r4, r4, #1
+  18a2b8:	e1540007 	cmp	r4, r7
+  18a2bc:	bafffff8 	blt	18a2a4 <drawPictureLoop>
+  18a2c0:	e3a04000 	mov	r4, #0
+  18a2c4:	e2855001 	add	r5, r5, #1
+  18a2c8:	e1550008 	cmp	r5, r8
+  18a2cc:	bafffff4 	blt	18a2a4 <drawPictureLoop>
+  18a2d0:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  18a2d4:	e1a0f00e 	mov	pc, lr
+
+0018a2d8 <drawPicture2>:
+  18a2d8:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  18a2dc:	e1a04000 	mov	r4, r0
+  18a2e0:	e1a05001 	mov	r5, r1
+  18a2e4:	e59f6040 	ldr	r6, [pc, #64]	; 18a32c <drawPictureLoop2+0x3c>
+  18a2e8:	e3a07020 	mov	r7, #32
+  18a2ec:	e3a08020 	mov	r8, #32
+
+0018a2f0 <drawPictureLoop2>:
+  18a2f0:	e1a00004 	mov	r0, r4
+  18a2f4:	e1a01005 	mov	r1, r5
+  18a2f8:	e0d620b2 	ldrh	r2, [r6], #2
+  18a2fc:	ebffffda 	bl	18a26c <DrawPixel>
+  18a300:	e2844001 	add	r4, r4, #1
+  18a304:	e1540007 	cmp	r4, r7
+  18a308:	bafffff8 	blt	18a2f0 <drawPictureLoop2>
+  18a30c:	e3a04000 	mov	r4, #0
+  18a310:	e2855001 	add	r5, r5, #1
+  18a314:	e1550008 	cmp	r5, r8
+  18a318:	bafffff4 	blt	18a2f0 <drawPictureLoop2>
+  18a31c:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  18a320:	e1a0f00e 	mov	pc, lr
+  18a324:	000090e0 	.word	0x000090e0
+  18a328:	000098f0 	.word	0x000098f0
+  18a32c:	001898f0 	.word	0x001898f0
