@@ -95,10 +95,10 @@ Disassembly of section .text:
   18a200:	ebffffba 	bl	18a0f0 <EnableJTAG>
   18a204:	ebffffdc 	bl	18a17c <InitFrameBuffer>
   18a208:	eb000004 	bl	18a220 <EraseScreen>
-  18a20c:	eb00001e 	bl	18a28c <drawPicture>
+  18a20c:	eb000020 	bl	18a294 <drawPicture>
   18a210:	e3a00000 	mov	r0, #0
-  18a214:	e3a01000 	mov	r1, #0
-  18a218:	eb00002e 	bl	18a2d8 <drawPicture2>
+  18a214:	e59f111c 	ldr	r1, [pc, #284]	; 18a338 <drawPictureLoop2+0x34>
+  18a218:	eb000013 	bl	18a26c <move>
 
 0018a21c <haltLoop$>:
   18a21c:	eafffffe 	b	18a21c <haltLoop$>
@@ -115,7 +115,7 @@ Disassembly of section .text:
   18a238:	e1a01005 	mov	r1, r5
   18a23c:	e1a02006 	mov	r2, r6
   18a240:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18a244:	eb000008 	bl	18a26c <DrawPixel>
+  18a244:	eb00000a 	bl	18a274 <DrawPixel>
   18a248:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
   18a24c:	e2844001 	add	r4, r4, #1
   18a250:	e1540007 	cmp	r4, r7
@@ -126,61 +126,69 @@ Disassembly of section .text:
   18a264:	bafffff2 	blt	18a234 <XLoop>
   18a268:	e1a0f00e 	mov	pc, lr
 
-0018a26c <DrawPixel>:
-  18a26c:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
-  18a270:	e0804501 	add	r4, r0, r1, lsl #10
-  18a274:	e1a04084 	lsl	r4, r4, #1
-  18a278:	e59f00a4 	ldr	r0, [pc, #164]	; 18a324 <drawPictureLoop2+0x34>
-  18a27c:	e5900000 	ldr	r0, [r0]
-  18a280:	e18020b4 	strh	r2, [r0, r4]
-  18a284:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
-  18a288:	e12fff1e 	bx	lr
+0018a26c <move>:
+  18a26c:	eb00001b 	bl	18a2e0 <drawPicture2>
+  18a270:	e1a0f00e 	mov	pc, lr
 
-0018a28c <drawPicture>:
-  18a28c:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18a290:	e3a04000 	mov	r4, #0
-  18a294:	e3a05000 	mov	r5, #0
-  18a298:	e59f6088 	ldr	r6, [pc, #136]	; 18a328 <drawPictureLoop2+0x38>
-  18a29c:	e3a07b01 	mov	r7, #1024	; 0x400
-  18a2a0:	e3a08c03 	mov	r8, #768	; 0x300
+0018a274 <DrawPixel>:
+  18a274:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
+  18a278:	e0804501 	add	r4, r0, r1, lsl #10
+  18a27c:	e1a04084 	lsl	r4, r4, #1
+  18a280:	e59f00b4 	ldr	r0, [pc, #180]	; 18a33c <drawPictureLoop2+0x38>
+  18a284:	e5900000 	ldr	r0, [r0]
+  18a288:	e18020b4 	strh	r2, [r0, r4]
+  18a28c:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
+  18a290:	e12fff1e 	bx	lr
 
-0018a2a4 <drawPictureLoop>:
-  18a2a4:	e1a00004 	mov	r0, r4
-  18a2a8:	e1a01005 	mov	r1, r5
-  18a2ac:	e0d620b2 	ldrh	r2, [r6], #2
-  18a2b0:	ebffffed 	bl	18a26c <DrawPixel>
-  18a2b4:	e2844001 	add	r4, r4, #1
-  18a2b8:	e1540007 	cmp	r4, r7
-  18a2bc:	bafffff8 	blt	18a2a4 <drawPictureLoop>
-  18a2c0:	e3a04000 	mov	r4, #0
-  18a2c4:	e2855001 	add	r5, r5, #1
-  18a2c8:	e1550008 	cmp	r5, r8
-  18a2cc:	bafffff4 	blt	18a2a4 <drawPictureLoop>
-  18a2d0:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
-  18a2d4:	e1a0f00e 	mov	pc, lr
+0018a294 <drawPicture>:
+  18a294:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  18a298:	e3a04000 	mov	r4, #0
+  18a29c:	e3a05000 	mov	r5, #0
+  18a2a0:	e59f6098 	ldr	r6, [pc, #152]	; 18a340 <drawPictureLoop2+0x3c>
+  18a2a4:	e3a07b01 	mov	r7, #1024	; 0x400
+  18a2a8:	e3a08c03 	mov	r8, #768	; 0x300
 
-0018a2d8 <drawPicture2>:
-  18a2d8:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18a2dc:	e1a04000 	mov	r4, r0
-  18a2e0:	e1a05001 	mov	r5, r1
-  18a2e4:	e59f6040 	ldr	r6, [pc, #64]	; 18a32c <drawPictureLoop2+0x3c>
-  18a2e8:	e3a07020 	mov	r7, #32
-  18a2ec:	e3a08020 	mov	r8, #32
+0018a2ac <drawPictureLoop>:
+  18a2ac:	e1a00004 	mov	r0, r4
+  18a2b0:	e1a01005 	mov	r1, r5
+  18a2b4:	e0d620b2 	ldrh	r2, [r6], #2
+  18a2b8:	ebffffed 	bl	18a274 <DrawPixel>
+  18a2bc:	e2844001 	add	r4, r4, #1
+  18a2c0:	e1540007 	cmp	r4, r7
+  18a2c4:	bafffff8 	blt	18a2ac <drawPictureLoop>
+  18a2c8:	e3a04000 	mov	r4, #0
+  18a2cc:	e2855001 	add	r5, r5, #1
+  18a2d0:	e1550008 	cmp	r5, r8
+  18a2d4:	bafffff4 	blt	18a2ac <drawPictureLoop>
+  18a2d8:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  18a2dc:	e1a0f00e 	mov	pc, lr
 
-0018a2f0 <drawPictureLoop2>:
-  18a2f0:	e1a00004 	mov	r0, r4
-  18a2f4:	e1a01005 	mov	r1, r5
-  18a2f8:	e0d620b2 	ldrh	r2, [r6], #2
-  18a2fc:	ebffffda 	bl	18a26c <DrawPixel>
-  18a300:	e2844001 	add	r4, r4, #1
-  18a304:	e1540007 	cmp	r4, r7
-  18a308:	bafffff8 	blt	18a2f0 <drawPictureLoop2>
-  18a30c:	e3a04000 	mov	r4, #0
-  18a310:	e2855001 	add	r5, r5, #1
-  18a314:	e1550008 	cmp	r5, r8
-  18a318:	bafffff4 	blt	18a2f0 <drawPictureLoop2>
-  18a31c:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
-  18a320:	e1a0f00e 	mov	pc, lr
-  18a324:	000090e0 	.word	0x000090e0
-  18a328:	000098f0 	.word	0x000098f0
-  18a32c:	001898f0 	.word	0x001898f0
+0018a2e0 <drawPicture2>:
+  18a2e0:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  18a2e4:	e1a04000 	mov	r4, r0
+  18a2e8:	e1a05001 	mov	r5, r1
+  18a2ec:	e59f6050 	ldr	r6, [pc, #80]	; 18a344 <drawPictureLoop2+0x40>
+  18a2f0:	e3a07020 	mov	r7, #32
+  18a2f4:	e0877004 	add	r7, r7, r4
+  18a2f8:	e1a09004 	mov	r9, r4
+  18a2fc:	e3a08020 	mov	r8, #32
+  18a300:	e0888005 	add	r8, r8, r5
+
+0018a304 <drawPictureLoop2>:
+  18a304:	e1a00004 	mov	r0, r4
+  18a308:	e1a01005 	mov	r1, r5
+  18a30c:	e0d620b2 	ldrh	r2, [r6], #2
+  18a310:	ebffffd7 	bl	18a274 <DrawPixel>
+  18a314:	e2844001 	add	r4, r4, #1
+  18a318:	e1540007 	cmp	r4, r7
+  18a31c:	bafffff8 	blt	18a304 <drawPictureLoop2>
+  18a320:	e1a04009 	mov	r4, r9
+  18a324:	e2855001 	add	r5, r5, #1
+  18a328:	e1550008 	cmp	r5, r8
+  18a32c:	bafffff4 	blt	18a304 <drawPictureLoop2>
+  18a330:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  18a334:	e1a0f00e 	mov	pc, lr
+  18a338:	00000267 	.word	0x00000267
+  18a33c:	000090e0 	.word	0x000090e0
+  18a340:	000098f0 	.word	0x000098f0
+  18a344:	001898f0 	.word	0x001898f0
