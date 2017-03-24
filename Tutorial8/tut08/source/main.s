@@ -14,15 +14,33 @@ main:
 	bl	InitFrameBuffer
 	bl	EraseScreen
 	bl	drawPicture
+
 	mov	r0, #0
 	ldr	r1, =615
-	bl	move
+	mov	r10, r0
+	mov	r11, r1
+	
+	bl	drawPicture2
 
-//	mov	r0, #12
-//	mov	r1, #12
+	mov	r0, #9			// Pass in pin #9 as argument
+	mov	r1, #1			// output for function code
+	bl	Init_GPIO		// call init GPIO subroutine 
+
+	mov	r0, #10			// Pass in pin #10 as argument   
+	mov	r1, #0			// input for function code
+	bl	Init_GPIO		// call init GPIO subsroutine
+
+	mov	r0, #11			// Pass in pin# as an argument
+	mov	r1, #1			// output for function code
+	bl	Init_GPIO		// Call init GPIO subroutine
+
+	bl	Read_SNES		// Call Read_SNES subroutinebl	drawPicture2
+
+	mov	r0, #12
+	mov	r1, #12
 //	bl	drawPicture2
 	
-//	bl	move		// move mario 
+	bl	move		// move mario 
 haltLoop$:
 	b	haltLoop$
 
@@ -140,6 +158,304 @@ drawPictureLoop2:
 	pop    {lr}
 	mov	pc,	lr			//return
 
+//-----------------------------------------------------------------------------------------------------
+//r0 = pin
+//r1 = function
+Init_GPIO:				// Intialization of GPIO 
+
+	cmp	r0, #9			// Compare passed in parameter to 9
+	beq	LATCH			// initialize the latch if param == 9
+	cmp	r0, #10			// Compare passed in parameter to 10
+	beq	DATA			// initialize the Data if param == 10
+	cmp	r0, #11			// Compare passed in parameter to 1
+	beq	CLOCK			// Initialize clock if param == 11
+	b	Init_GPIO_DONE		// else, branch to end of initialization
+
+LATCH:					// label to begin latch initialization 
+
+	ldr	r0, =0x3f200000		// calculate the base address of GPFSEL0
+	ldr	r2, [r0]		// Copy GPFSEL0 to r2
+	mov	r3, #7			// b0111
+	lsl	r3, #27			// index of first bit for pin9
+	bic	r2, r3			// clear pin 9 bits 
+	lsl	r1, #27			// move 1 to first bit posotion for pin9
+	orr	r2, r1			// set pin9 function in r2
+	str	r2, [r0]		// write back to GPFSEL0 
+
+	b	Init_GPIO_DONE		// jump to end of initialization 
+	
+DATA:					// label to begin Data initialization 
+	ldr	r0, =0x3f200004		// calculate base address of GPFSEL1
+	ldr	r2, [r0]		// Copy GPFSEL1 to r2
+	mov	r3, #7			// b0111
+	lsl	r3, #0			// index of first bit for pin 10 
+	bic	r2, r3			// clearn pin 10 bits 
+	lsl	r1, #0			// move 0 to first bit position of pin 10
+	orr	r2, r1			// set pin10 function in r2
+	str	r2, [r0]		// write back to GPFSEL1
+
+	b	Init_GPIO_DONE		// End of data initialization
+	
+CLOCK:					// label to begin clock intialization	
+	ldr	r0, =0x3f200004		// calculate base address of GPFSEL
+	ldr	r2, [r0]		// Copy GPFSEL1 to r2
+	mov	r3, #7			// b0111
+	lsl	r3, #3			// index of first bit for pin 11
+	bic	r2, r3			// clear pin 11 bits
+	lsl	r1, #3			// move input(write) to first bit position of pin 11
+	orr	r2, r1			// set pin11 function in r2
+	str	r2, [r0]		// write back to GPFSEL1
+
+	b	Init_GPIO_DONE		// end of clock initialization 
+
+Init_GPIO_DONE:				// end of GPIO initialization
+	
+	mov	pc, lr			// go back to calling code 
+//-----------------------------------------------------------------------------------------------------
+//r0 = what to write
+Write_Latch:				// write latch label 
+	cmp	r0, #0			// compare passed in param to 0
+	beq	Latch_W_0		// if param == 0 branch to clear latch
+	cmp	r0, #1			// comapre passed in param to 1
+	beq	Latch_W_1		// if param == 1 go to set latch
+Latch_W_0:				
+	ldr	r1, =0x3f200028		// calculate address of GPCLR0
+	mov	r2, #1			// move	001 to r2
+	lsl	r2, #9			// shifting 1 to first bit of pin 9
+	str	r2, [r1]		// writing back to GPCLR0
+	b	Write_Latch_DONE	// branch to end of write_latch
+Latch_W_1:				 
+	ldr	r1, =0x3f20001c		// calculate address of GPSET0
+	mov	r2, #1			// move 001 to r2
+	lsl	r2, #9			// shift 1 to first bit of pin 9
+	str	r2, [r1]		// write back to GPSET0
+Write_Latch_DONE:
+	mov	pc, lr			// go back to calling code 
+//-----------------------------------------------------------------------------------------------------
+Write_Clock:
+	cmp	r0, #0			// compare passed in param to 0
+	beq	Clock_W_0		// if param == 0 go to clear clock
+	cmp	r0, #1			// compare passed in param to 1
+	beq	Clock_W_1		// if param == 1 go to write clock
+Clock_W_0:
+	ldr	r1, =0x3f200028		// calculate address of GPCLR0
+	mov	r2, #1			// move 001 to r2
+	lsl	r2, #11			// shift 1 to first bit of pin 11
+	str	r2, [r1]		// write back to GPCLR0
+	b	Write_Clock_DONE	// branch to end of writing to clock
+Clock_W_1:	
+	ldr	r1, =0x3f20001c		// calculate base address of GPSET0
+	mov	r2, #1			// move 001 into r2
+	lsl	r2, #11			// shift 1 to first bit of pin 11
+	str	r2, [r1]		// write back to GPSET0
+Write_Clock_DONE:
+	mov	pc,lr			// go back to calling code 
+//-----------------------------------------------------------------------------------------------------
+Read_Data:
+	ldr	r1, =0x3f200034		// calculate adress of GPLEV0
+	ldr	r2, [r1]		// move GPLEV0 into r2
+	mov	r3, #1			// move 001 into r3
+	lsl	r3, #10			// shift to first bit of pin 10 
+	and	r2, r3			// mask everything else
+	teq	r2, #0			// perform exclusive or  
+	moveq	r4, #0			// move 0 to r4 if r2 == 0 
+	movne	r4, #1			// move 1 to r4 if r2 == 1
+Read_Data_DONE:
+	mov	pc, lr			// go back to calling code 
+//-----------------------------------------------------------------------------------------------------
+					//r0 = time in microseconds
+Wait:
+	ldr	r1, =0x3f003004		// Calculate address of system timer
+	ldr	r2, [r1]		// move system timer into r2
+	add	r2, r0			// add moved in param (MicroSeconds) to system timer
+waitLoop:
+	ldr	r3, [r1]		// load system timer to r3
+	cmp	r2, r3			// compare(system timer + waitTime) to system timer
+	bhi	waitLoop		// branch back to top if (system timer + waitTime) > system timer
+Wait_DONE:
+	mov	pc, lr			// go back to calling function
+//-----------------------------------------------------------------------------------------------------
+Read_SNES:
+
+	mov	r0, #1			// move 1 to r0 
+	bl	Write_Clock		// call write clock function 
+	mov	r9, #0			// move 0 to r9
+
+startOfLoop:
+	
+	mov	r0, #1			// move 1 to r0
+	bl	Write_Latch		// call write latch 
+
+	mov	r0, #12			// add 12 microseconds 
+	bl	Wait			// call wait function	
+
+	mov	r0, #0			// writeGPIO(Latch, 0)
+	bl	Write_Latch		// call write latch function 
+	
+	
+	mov	r5, #0			// move 0 to r5
+	mov	r7, #0			// move 0 to r7 
+pulseLoop:
+	
+	cmp	r5, #16			// compare counter to 16
+	bge	pulseLoopDone		// stop pulsing if counter >= 16
+
+	mov	r0, #6			// pass in 6 microseconds as param
+	bl	Wait			// call wait to wait for 6 seconds
+
+	mov	r0, #0			// move 0
+	bl	Write_Clock		// write GPIO(Clock, 0)
+	
+	mov	r0, #6			// pass in 6 microseconds as param
+	bl	Wait			// call wait to wait for 6 seconds
+
+	bl	Read_Data		// read databit(i)
+
+	lsl	r4, r5			// logical shift read value by count
+	orr	r7, r4			// update r7
+
+	mov	r0, #1			// move 1 as param to writeclock function
+	bl	Write_Clock		// call writeclock function
+	
+	add	r5, r5, #1		// increment count by 1
+	b	pulseLoop		// branch back to loop test
+
+pulseLoopDone:	
+
+	cmp	r9, r7			// compare r9 to r7
+	beq	startOfLoop		// branch to top of loop if they're equal
+	mov	r9, r7			// move r7 to r9 
+
+	
+topCheckLoop:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #0			// lsl r6 by 0 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next1			// if r8 != 0 go to next1
+
+	//b
+	
+next1:	
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #1			// lsl r6 by 1 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next2			// if r8 != 0 go to next2
+
+	//y
+next2:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #2			// lsl r6 by 2 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next3			// if r8 != 0 go to next3
+
+	//select
+next3:
+
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #3			// lsl r6 by 3 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next4			// if r8 != 0 go to next4
+
+	//start
+next4:
+
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #4			// lsl r6 by 4 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next5			// if r8 != 0 go to next5
+
+	//dup
+//	mov	r0, r10
+//	add	r11, #-60
+//	mov	r1, r11
+//	bl	drawPicture2
+//	add	r11, #60
+//	mov	r1, r11
+//	bl	drawPicture2
+next5:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #5			// lsl r6 by 5 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next6			// if r8 != 0 go to next6
+
+	//ddown
+next6:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #6			// lsl r6 by 6 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next7			// if r8 != 0 go to next7
+
+	//dleft
+//	add	r10, #-1
+//	mov	r0, r10
+//	mov	r1, r11
+//	bl	drawPicture2
+next7:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #7			// lsl r6 by 7 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next8			// if r8 != 0 go to next8
+
+	//dright
+	add	r10, #1
+	mov	r0, r10
+	mov	r1, r11
+	bl	drawPicture2
+
+next8:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #8			// lsl r6 by 8 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next9			// if r8 != 0 go to next9
+
+	//a
+	
+next9:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #9			// lsl r6 by 9 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next10			// if r8 != 0 go to next10
+
+	//x
+
+next10:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #10			// lsl r6 by 10 
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next11			// if r8 != 0 go to next11
+
+	//left
+
+next11:
+	mov	r6, #1			// move 1 to r6
+	lsl	r6, #11			// lsl r6 by 11
+	and	r8, r6, r7		// mask everything in r6 not pressed
+	cmp	r8, #0			// compare r8 to 0 
+	bne	next12			// if r8 != 0 go to next12
+
+	//right
+	
+next12:	
+		
+CheckLoopDone:	
+
+	b	startOfLoop		// branch back to startOfLoop
+	
+Read_SNES_DONE:
+	mov	pc, lr			// go back to calling code
+
+	
 
 
 	.section .data

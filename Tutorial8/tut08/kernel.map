@@ -26,38 +26,38 @@ LOAD build/main.o
 .igot.plt       0x0018a0f0        0x0
  .igot.plt      0x00000000        0x0 build/jtag.o
 
-.text           0x0018a0f0      0x258
+.text           0x0018a0f0      0x564
  *.c.o(.text)
  *(.text)
  .text          0x0018a0f0       0x8c build/jtag.o
                 0x0018a0f0                EnableJTAG
  .text          0x0018a17c       0x80 build/framebuffer.o
                 0x0018a17c                InitFrameBuffer
- .text          0x0018a1fc      0x14c build/main.o
+ .text          0x0018a1fc      0x458 build/main.o
 OUTPUT(build/output.elf elf32-littlearm)
 
-.glue_7         0x0018a348        0x0
+.glue_7         0x0018a654        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0018a348        0x0
+.glue_7t        0x0018a654        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0018a348        0x0
+.vfp11_veneer   0x0018a654        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0018a348        0x0
+.v4_bx          0x0018a654        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0018a348        0x0
+.iplt           0x0018a654        0x0
  .iplt          0x00000000        0x0 build/jtag.o
 
-.rel.dyn        0x0018a348        0x0
+.rel.dyn        0x0018a654        0x0
  .rel.iplt      0x00000000        0x0 build/jtag.o
 
-.bss            0x0018a348        0x0
- .bss           0x0018a348        0x0 build/jtag.o
- .bss           0x0018a348        0x0 build/framebuffer.o
- .bss           0x0018a348        0x0 build/main.o
+.bss            0x0018a654        0x0
+ .bss           0x0018a654        0x0 build/jtag.o
+ .bss           0x0018a654        0x0 build/framebuffer.o
+ .bss           0x0018a654        0x0 build/main.o
 
 .ARM.attributes
                 0x00000000       0x29
@@ -68,10 +68,10 @@ OUTPUT(build/output.elf elf32-littlearm)
  .ARM.attributes
                 0x00000052       0x29 build/main.o
 
-.debug_line     0x00000000      0x16f
+.debug_line     0x00000000      0x23f
  .debug_line    0x00000000       0x61 build/jtag.o
  .debug_line    0x00000061       0x67 build/framebuffer.o
- .debug_line    0x000000c8       0xa7 build/main.o
+ .debug_line    0x000000c8      0x177 build/main.o
 
 .debug_info     0x00000000      0x12e
  .debug_info    0x00000000       0x62 build/jtag.o

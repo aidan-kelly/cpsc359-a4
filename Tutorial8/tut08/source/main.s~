@@ -15,8 +15,8 @@ main:
 	bl	EraseScreen
 	bl	drawPicture
 	mov	r0, #0
-	mov	r1, #0
-	bl	drawPicture2
+	ldr	r1, =615
+	bl	move
 
 //	mov	r0, #12
 //	mov	r1, #12
@@ -54,11 +54,11 @@ XLoop:
  *  r0 - x
  *  r1 - y
  *  r2 - color
- */
-//move:
-//	mov	r0, #6	// x position to draw mario in 
-//	bl	drawPicture2 
-//	mov	pc, lr
+	*/
+	
+move:
+	bl	drawPicture2 
+	mov	pc, lr
 	
 
 
@@ -114,11 +114,16 @@ drawPictureLoop:
 // this is the start positin of our x
 drawPicture2:
 	push {lr}
-	mov	r4,	r0			//Start X position of your picture. r0 is pased in param 
+	mov	r4,	r0			//Start X position of your picture. r0 is pased in param
 	mov	r5,	r1
 	ldr	r6,	=pic2			//Address of the picture
+//	add	r7,     r4			// add offset of start x position 
 	mov	r7,	#32			//Width of your picture
+	add	r7,	r4			
+	mov	r9,	r4
+	//	add	r8,	r5			// add offset of start y position
 	mov	r8,	#32			//Height of your picture
+	add	r8,	r5			// add offset of start y position 
 drawPictureLoop2:
 	mov	r0,	r4			//passing x for ro which is used by the Draw pixel function
 	mov	r1,	r5			//passing y for r1 which is used by the Draw pixel formula
@@ -128,12 +133,13 @@ drawPictureLoop2:
 	add	r4,	#1			//increment x position
 	cmp	r4,	r7			//compare with image with
 	blt	drawPictureLoop2
-	mov	r4,	#0			//reset x
+	mov	r4,	r9			//reset x
 	add	r5,	#1			//increment Y
 	cmp	r5,	r8			//compare y with image height
 	blt	drawPictureLoop2
 	pop    {lr}
 	mov	pc,	lr			//return
+
 
 
 	.section .data
