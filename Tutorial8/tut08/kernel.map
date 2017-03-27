@@ -15,49 +15,49 @@ LOAD build/main.o
  .init          0x00008000        0x4 build/main.o
                 0x00008000                _start
 
-.data           0x00009080   0x181070
+.data           0x00009080   0x181880
  *(.data)
  .data          0x00009080        0x0 build/jtag.o
  .data          0x00009080       0x70 build/framebuffer.o
                 0x000090e0                FrameBufferPointer
- .data          0x000090f0   0x181000 build/main.o
+ .data          0x000090f0   0x181810 build/main.o
  *.c.o(*)
 
-.igot.plt       0x0018a0f0        0x0
+.igot.plt       0x0018a900        0x0
  .igot.plt      0x00000000        0x0 build/jtag.o
 
-.text           0x0018a0f0      0x564
+.text           0x0018a900      0x5d4
  *.c.o(.text)
  *(.text)
- .text          0x0018a0f0       0x8c build/jtag.o
-                0x0018a0f0                EnableJTAG
- .text          0x0018a17c       0x80 build/framebuffer.o
-                0x0018a17c                InitFrameBuffer
- .text          0x0018a1fc      0x458 build/main.o
+ .text          0x0018a900       0x8c build/jtag.o
+                0x0018a900                EnableJTAG
+ .text          0x0018a98c       0x80 build/framebuffer.o
+                0x0018a98c                InitFrameBuffer
+ .text          0x0018aa0c      0x4c8 build/main.o
 OUTPUT(build/output.elf elf32-littlearm)
 
-.glue_7         0x0018a654        0x0
+.glue_7         0x0018aed4        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0018a654        0x0
+.glue_7t        0x0018aed4        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0018a654        0x0
+.vfp11_veneer   0x0018aed4        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0018a654        0x0
+.v4_bx          0x0018aed4        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0018a654        0x0
+.iplt           0x0018aed4        0x0
  .iplt          0x00000000        0x0 build/jtag.o
 
-.rel.dyn        0x0018a654        0x0
+.rel.dyn        0x0018aed4        0x0
  .rel.iplt      0x00000000        0x0 build/jtag.o
 
-.bss            0x0018a654        0x0
- .bss           0x0018a654        0x0 build/jtag.o
- .bss           0x0018a654        0x0 build/framebuffer.o
- .bss           0x0018a654        0x0 build/main.o
+.bss            0x0018aed4        0x0
+ .bss           0x0018aed4        0x0 build/jtag.o
+ .bss           0x0018aed4        0x0 build/framebuffer.o
+ .bss           0x0018aed4        0x0 build/main.o
 
 .ARM.attributes
                 0x00000000       0x29
@@ -68,15 +68,15 @@ OUTPUT(build/output.elf elf32-littlearm)
  .ARM.attributes
                 0x00000052       0x29 build/main.o
 
-.debug_line     0x00000000      0x23f
+.debug_line     0x00000000      0x260
  .debug_line    0x00000000       0x61 build/jtag.o
  .debug_line    0x00000061       0x67 build/framebuffer.o
- .debug_line    0x000000c8      0x177 build/main.o
+ .debug_line    0x000000c8      0x198 build/main.o
 
-.debug_info     0x00000000      0x12e
+.debug_info     0x00000000      0x12b
  .debug_info    0x00000000       0x62 build/jtag.o
  .debug_info    0x00000062       0x69 build/framebuffer.o
- .debug_info    0x000000cb       0x63 build/main.o
+ .debug_info    0x000000cb       0x60 build/main.o
 
 .debug_abbrev   0x00000000       0x3a
  .debug_abbrev  0x00000000       0x14 build/jtag.o
