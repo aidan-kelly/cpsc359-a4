@@ -328,6 +328,90 @@ pulseLoopDone:
 
 	
 topCheckLoop:
+
+	mov	r6, #0x81
+	and	r8, r6, r7
+	cmp	r8, #0
+	bne	bnext
+
+	//b
+	// make mario jump 
+	ldr	r12, =500
+forwardParabola:
+	ldr	r0, =yPosition
+	ldr	r11, [r0]
+	cmp	r11, r12			// compare height to 550 
+	beq	doneUp2					// while height < 550 skip the loop
+	sub	r11, #1				// decrement r11
+	str	r11, [r0]
+	mov	r1, r11			// height = height -1 (actually makes him move up on sscreen)
+	ldr	r2, = xPosition	// load xposition of mario
+	ldr	r0, [r2]
+	add	r0, #1
+	str	r0, [r2]
+	bl	drawPicture2		// draw mario
+	b	forwardParabola
+
+doneUp2:	
+	ldr	r12, =615
+forwardParabola2:
+	ldr	r0, =yPosition
+	ldr	r11, [r0]
+	cmp	r11, r12			// compare height to 615
+	beq	next8			// while height < 550 skip the loop
+	add	r11, #1			// increment r11
+	str	r11, [r0]
+	mov	r1, r11			// height = height -1 (actually makes him move up on sscreen)
+	ldr	r2, = xPosition	// load xposition of mario
+	ldr	r0, [r2]
+	add	r0, #1
+	str	r0, [r2]
+	bl	drawPicture2		// draw mario
+	b	forwardParabola2
+	
+
+
+
+
+
+bnext:	
+
+	ldr	r6, =0x41
+	and	r8, r6, r7
+	cmp	r8, #0
+	bne	bnext2
+
+	//b
+	// make mario jump 
+	ldr	r12, =500
+backwardParabola:
+	cmp	r11, r12			// compare height to 550 
+	ble	doneUpv2					// while height < 550 skip the loop
+	sub r11, #1				// decrement r11
+	mov	r1, r11			// height = height -1 (actually makes him move up on sscreen)
+	ldr	r2, = xPosition	// load xposition of mario
+	ldr	r0, [r2]
+	add	r0, #-1
+	str	r0, [r2]
+	bl	drawPicture2		// draw mario
+	b	backwardParabola
+
+doneUpv2:	
+	ldr	r12, =615
+backwardParabola2:
+	cmp	r11, r12			// compare height to 615
+	beq	next8			// while height < 550 skip the loop
+	add r11, #1				// increment r11
+	mov	r1, r11			// height = height -1 (actually makes him move up on sscreen)
+	ldr	r2, = xPosition	// load xposition of mario
+	ldr	r0, [r2]
+	add	r0, #-1
+	str	r0, [r2]
+	bl	drawPicture2		// draw mario
+	b	backwardParabola2	
+	
+bnext2:	
+	
 	mov	r6, #1			// move 1 to r6
 	lsl	r6, #0			// lsl r6 by 0 
 	and	r8, r6, r7		// mask everything in r6 not pressed
@@ -342,8 +426,9 @@ testJump:
 	ble	doneUp					// while height < 550 skip the loop
 	sub r11, #1				// decrement r11
 	mov	r1, r11			// height = height -1 (actually makes him move up on sscreen)
-	ldr	r0, = xPosition	// load xposition of mario
-	ldr	r0, [r0]
+	ldr	r2, = xPosition	// load xposition of mario
+	ldr	r0, [r2]
+	str	r0, [r2]
 	bl	drawPicture2		// draw mario
 	b	testJump
 
@@ -351,11 +436,12 @@ doneUp:
 	ldr	r12, =615
 testJump2:
 	cmp	r11, r12			// compare height to 615
-	bgt	next8				// while height < 550 skip the loop
+	beq	next8			// while height < 550 skip the loop
 	add r11, #1				// increment r11
 	mov	r1, r11			// height = height -1 (actually makes him move up on sscreen)
-	ldr	r0, = xPosition	// load xposition of mario
-	ldr	r0, [r0]
+	ldr	r2, = xPosition	// load xposition of mario
+	ldr	r0, [r2]
+	str	r0, [r2]
 	bl	drawPicture2		// draw mario
 	b	testJump2
 	
