@@ -5,491 +5,810 @@ build/output.elf:     file format elf32-littlearm
 Disassembly of section .init:
 
 00008000 <_start>:
-    8000:	ea060a81 	b	18aa0c <main>
+    8000:	ea0c0e81 	b	30ba0c <main>
 
 Disassembly of section .text:
 
-0018a900 <EnableJTAG>:
-  18a900:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18a904:	e59f0064 	ldr	r0, [pc, #100]	; 18a970 <dowaitloop+0xc>
-  18a908:	e0211001 	eor	r1, r1, r1
-  18a90c:	e5801000 	str	r1, [r0]
-  18a910:	eb000012 	bl	18a960 <dowait>
-  18a914:	e59f0058 	ldr	r0, [pc, #88]	; 18a974 <dowaitloop+0x10>
-  18a918:	e59f1058 	ldr	r1, [pc, #88]	; 18a978 <dowaitloop+0x14>
-  18a91c:	e5801000 	str	r1, [r0]
-  18a920:	eb00000e 	bl	18a960 <dowait>
-  18a924:	e0211001 	eor	r1, r1, r1
-  18a928:	e5801000 	str	r1, [r0]
-  18a92c:	e59f0048 	ldr	r0, [pc, #72]	; 18a97c <dowaitloop+0x18>
-  18a930:	e5901000 	ldr	r1, [r0]
-  18a934:	e3c11a07 	bic	r1, r1, #28672	; 0x7000
-  18a938:	e3811a02 	orr	r1, r1, #8192	; 0x2000
-  18a93c:	e5801000 	str	r1, [r0]
-  18a940:	e59f0038 	ldr	r0, [pc, #56]	; 18a980 <dowaitloop+0x1c>
-  18a944:	e5901000 	ldr	r1, [r0]
-  18a948:	e59f2034 	ldr	r2, [pc, #52]	; 18a984 <dowaitloop+0x20>
-  18a94c:	e1c11002 	bic	r1, r1, r2
-  18a950:	e59f2030 	ldr	r2, [pc, #48]	; 18a988 <dowaitloop+0x24>
-  18a954:	e1811002 	orr	r1, r1, r2
-  18a958:	e5801000 	str	r1, [r0]
-  18a95c:	e49df004 	pop	{pc}		; (ldr pc, [sp], #4)
+0030b900 <EnableJTAG>:
+  30b900:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30b904:	e59f0064 	ldr	r0, [pc, #100]	; 30b970 <dowaitloop+0xc>
+  30b908:	e0211001 	eor	r1, r1, r1
+  30b90c:	e5801000 	str	r1, [r0]
+  30b910:	eb000012 	bl	30b960 <dowait>
+  30b914:	e59f0058 	ldr	r0, [pc, #88]	; 30b974 <dowaitloop+0x10>
+  30b918:	e59f1058 	ldr	r1, [pc, #88]	; 30b978 <dowaitloop+0x14>
+  30b91c:	e5801000 	str	r1, [r0]
+  30b920:	eb00000e 	bl	30b960 <dowait>
+  30b924:	e0211001 	eor	r1, r1, r1
+  30b928:	e5801000 	str	r1, [r0]
+  30b92c:	e59f0048 	ldr	r0, [pc, #72]	; 30b97c <dowaitloop+0x18>
+  30b930:	e5901000 	ldr	r1, [r0]
+  30b934:	e3c11a07 	bic	r1, r1, #28672	; 0x7000
+  30b938:	e3811a02 	orr	r1, r1, #8192	; 0x2000
+  30b93c:	e5801000 	str	r1, [r0]
+  30b940:	e59f0038 	ldr	r0, [pc, #56]	; 30b980 <dowaitloop+0x1c>
+  30b944:	e5901000 	ldr	r1, [r0]
+  30b948:	e59f2034 	ldr	r2, [pc, #52]	; 30b984 <dowaitloop+0x20>
+  30b94c:	e1c11002 	bic	r1, r1, r2
+  30b950:	e59f2030 	ldr	r2, [pc, #48]	; 30b988 <dowaitloop+0x24>
+  30b954:	e1811002 	orr	r1, r1, r2
+  30b958:	e5801000 	str	r1, [r0]
+  30b95c:	e49df004 	pop	{pc}		; (ldr pc, [sp], #4)
 
-0018a960 <dowait>:
-  18a960:	e3a02f4b 	mov	r2, #300	; 0x12c
+0030b960 <dowait>:
+  30b960:	e3a02f4b 	mov	r2, #300	; 0x12c
 
-0018a964 <dowaitloop>:
-  18a964:	e2522001 	subs	r2, r2, #1
-  18a968:	1afffffd 	bne	18a964 <dowaitloop>
-  18a96c:	e12fff1e 	bx	lr
-  18a970:	3f200094 	.word	0x3f200094
-  18a974:	3f200098 	.word	0x3f200098
-  18a978:	0bc00010 	.word	0x0bc00010
-  18a97c:	3f200000 	.word	0x3f200000
-  18a980:	3f200008 	.word	0x3f200008
-  18a984:	00e3ffc0 	.word	0x00e3ffc0
-  18a988:	0061b6c0 	.word	0x0061b6c0
+0030b964 <dowaitloop>:
+  30b964:	e2522001 	subs	r2, r2, #1
+  30b968:	1afffffd 	bne	30b964 <dowaitloop>
+  30b96c:	e12fff1e 	bx	lr
+  30b970:	3f200094 	.word	0x3f200094
+  30b974:	3f200098 	.word	0x3f200098
+  30b978:	0bc00010 	.word	0x0bc00010
+  30b97c:	3f200000 	.word	0x3f200000
+  30b980:	3f200008 	.word	0x3f200008
+  30b984:	00e3ffc0 	.word	0x00e3ffc0
+  30b988:	0061b6c0 	.word	0x0061b6c0
 
-0018a98c <InitFrameBuffer>:
-  18a98c:	e59f2068 	ldr	r2, [pc, #104]	; 18a9fc <pointerWaitLoop$+0x1c>
-  18a990:	e59f3068 	ldr	r3, [pc, #104]	; 18aa00 <pointerWaitLoop$+0x20>
+0030b98c <InitFrameBuffer>:
+  30b98c:	e59f2068 	ldr	r2, [pc, #104]	; 30b9fc <pointerWaitLoop$+0x1c>
+  30b990:	e59f3068 	ldr	r3, [pc, #104]	; 30ba00 <pointerWaitLoop$+0x20>
 
-0018a994 <mBoxFullLoop$>:
-  18a994:	e5920018 	ldr	r0, [r2, #24]
-  18a998:	e3100102 	tst	r0, #-2147483648	; 0x80000000
-  18a99c:	1afffffc 	bne	18a994 <mBoxFullLoop$>
-  18a9a0:	e2830101 	add	r0, r3, #1073741824	; 0x40000000
-  18a9a4:	e3800008 	orr	r0, r0, #8
-  18a9a8:	e5820020 	str	r0, [r2, #32]
+0030b994 <mBoxFullLoop$>:
+  30b994:	e5920018 	ldr	r0, [r2, #24]
+  30b998:	e3100102 	tst	r0, #-2147483648	; 0x80000000
+  30b99c:	1afffffc 	bne	30b994 <mBoxFullLoop$>
+  30b9a0:	e2830101 	add	r0, r3, #1073741824	; 0x40000000
+  30b9a4:	e3800008 	orr	r0, r0, #8
+  30b9a8:	e5820020 	str	r0, [r2, #32]
 
-0018a9ac <mBoxEmptyLoop$>:
-  18a9ac:	e5920018 	ldr	r0, [r2, #24]
-  18a9b0:	e3100101 	tst	r0, #1073741824	; 0x40000000
-  18a9b4:	1afffffc 	bne	18a9ac <mBoxEmptyLoop$>
-  18a9b8:	e5920000 	ldr	r0, [r2]
-  18a9bc:	e200100f 	and	r1, r0, #15
-  18a9c0:	e3310008 	teq	r1, #8
-  18a9c4:	1afffff8 	bne	18a9ac <mBoxEmptyLoop$>
-  18a9c8:	e59f0030 	ldr	r0, [pc, #48]	; 18aa00 <pointerWaitLoop$+0x20>
-  18a9cc:	e5901004 	ldr	r1, [r0, #4]
-  18a9d0:	e3310102 	teq	r1, #-2147483648	; 0x80000000
-  18a9d4:	0a000001 	beq	18a9e0 <pointerWaitLoop$>
-  18a9d8:	13a00000 	movne	r0, #0
-  18a9dc:	112fff1e 	bxne	lr
+0030b9ac <mBoxEmptyLoop$>:
+  30b9ac:	e5920018 	ldr	r0, [r2, #24]
+  30b9b0:	e3100101 	tst	r0, #1073741824	; 0x40000000
+  30b9b4:	1afffffc 	bne	30b9ac <mBoxEmptyLoop$>
+  30b9b8:	e5920000 	ldr	r0, [r2]
+  30b9bc:	e200100f 	and	r1, r0, #15
+  30b9c0:	e3310008 	teq	r1, #8
+  30b9c4:	1afffff8 	bne	30b9ac <mBoxEmptyLoop$>
+  30b9c8:	e59f0030 	ldr	r0, [pc, #48]	; 30ba00 <pointerWaitLoop$+0x20>
+  30b9cc:	e5901004 	ldr	r1, [r0, #4]
+  30b9d0:	e3310102 	teq	r1, #-2147483648	; 0x80000000
+  30b9d4:	0a000001 	beq	30b9e0 <pointerWaitLoop$>
+  30b9d8:	13a00000 	movne	r0, #0
+  30b9dc:	112fff1e 	bxne	lr
 
-0018a9e0 <pointerWaitLoop$>:
-  18a9e0:	e59f001c 	ldr	r0, [pc, #28]	; 18aa04 <pointerWaitLoop$+0x24>
-  18a9e4:	e5900000 	ldr	r0, [r0]
-  18a9e8:	e3300000 	teq	r0, #0
-  18a9ec:	0afffffb 	beq	18a9e0 <pointerWaitLoop$>
-  18a9f0:	e59f3010 	ldr	r3, [pc, #16]	; 18aa08 <pointerWaitLoop$+0x28>
-  18a9f4:	e5830000 	str	r0, [r3]
-  18a9f8:	e12fff1e 	bx	lr
-  18a9fc:	3f00b880 	.word	0x3f00b880
-  18aa00:	00009080 	.word	0x00009080
-  18aa04:	000090cc 	.word	0x000090cc
-  18aa08:	000090e0 	.word	0x000090e0
+0030b9e0 <pointerWaitLoop$>:
+  30b9e0:	e59f001c 	ldr	r0, [pc, #28]	; 30ba04 <pointerWaitLoop$+0x24>
+  30b9e4:	e5900000 	ldr	r0, [r0]
+  30b9e8:	e3300000 	teq	r0, #0
+  30b9ec:	0afffffb 	beq	30b9e0 <pointerWaitLoop$>
+  30b9f0:	e59f3010 	ldr	r3, [pc, #16]	; 30ba08 <pointerWaitLoop$+0x28>
+  30b9f4:	e5830000 	str	r0, [r3]
+  30b9f8:	e12fff1e 	bx	lr
+  30b9fc:	3f00b880 	.word	0x3f00b880
+  30ba00:	00009080 	.word	0x00009080
+  30ba04:	000090cc 	.word	0x000090cc
+  30ba08:	000090e0 	.word	0x000090e0
 
-0018aa0c <main>:
-  18aa0c:	e3a0d902 	mov	sp, #32768	; 0x8000
-  18aa10:	ebffffba 	bl	18a900 <EnableJTAG>
-  18aa14:	ebffffdc 	bl	18a98c <InitFrameBuffer>
-  18aa18:	eb000013 	bl	18aa6c <EraseScreen>
-  18aa1c:	eb00002f 	bl	18aae0 <drawPicture>
-  18aa20:	e3a00000 	mov	r0, #0
-  18aa24:	e59f147c 	ldr	r1, [pc, #1148]	; 18aea8 <Read_SNES_DONE+0x4>
-  18aa28:	e1a0a000 	mov	sl, r0
-  18aa2c:	e1a0b001 	mov	fp, r1
-  18aa30:	eb00003d 	bl	18ab2c <drawPicture2>
-  18aa34:	e3a00009 	mov	r0, #9
-  18aa38:	e3a01001 	mov	r1, #1
-  18aa3c:	eb000050 	bl	18ab84 <Init_GPIO>
-  18aa40:	e3a0000a 	mov	r0, #10
-  18aa44:	e3a01000 	mov	r1, #0
-  18aa48:	eb00004d 	bl	18ab84 <Init_GPIO>
-  18aa4c:	e3a0000b 	mov	r0, #11
-  18aa50:	e3a01001 	mov	r1, #1
-  18aa54:	eb00004a 	bl	18ab84 <Init_GPIO>
-  18aa58:	eb000098 	bl	18acc0 <Read_SNES>
-  18aa5c:	e3a0000c 	mov	r0, #12
-  18aa60:	e3a0100c 	mov	r1, #12
-  18aa64:	eb000013 	bl	18aab8 <move>
+0030ba0c <main>:
+  30ba0c:	e3a0d902 	mov	sp, #32768	; 0x8000
+  30ba10:	ebffffba 	bl	30b900 <EnableJTAG>
+  30ba14:	ebffffdc 	bl	30b98c <InitFrameBuffer>
+  30ba18:	eb000015 	bl	30ba74 <EraseScreen>
+  30ba1c:	eb00006d 	bl	30bbd8 <drawStartScreen>
+  30ba20:	e59f0858 	ldr	r0, [pc, #2136]	; 30c280 <Read_SNES_DONE2+0x4>
+  30ba24:	e3a01f6e 	mov	r1, #440	; 0x1b8
+  30ba28:	eb00007d 	bl	30bc24 <drawMushroom>
+  30ba2c:	e3a00000 	mov	r0, #0
+  30ba30:	e59f184c 	ldr	r1, [pc, #2124]	; 30c284 <Read_SNES_DONE2+0x8>
+  30ba34:	e1a0a000 	mov	sl, r0
+  30ba38:	e1a0b001 	mov	fp, r1
+  30ba3c:	e3a00009 	mov	r0, #9
+  30ba40:	e3a01001 	mov	r1, #1
+  30ba44:	eb00008c 	bl	30bc7c <Init_GPIO>
+  30ba48:	e3a0000a 	mov	r0, #10
+  30ba4c:	e3a01000 	mov	r1, #0
+  30ba50:	eb000089 	bl	30bc7c <Init_GPIO>
+  30ba54:	e3a0000b 	mov	r0, #11
+  30ba58:	e3a01001 	mov	r1, #1
+  30ba5c:	eb000086 	bl	30bc7c <Init_GPIO>
+  30ba60:	eb00018e 	bl	30c0a0 <Read_SNES2>
+  30ba64:	e3a0000c 	mov	r0, #12
+  30ba68:	e3a0100c 	mov	r1, #12
+  30ba6c:	eb000013 	bl	30bac0 <move>
 
-0018aa68 <haltLoop$>:
-  18aa68:	eafffffe 	b	18aa68 <haltLoop$>
+0030ba70 <haltLoop$>:
+  30ba70:	eafffffe 	b	30ba70 <haltLoop$>
 
-0018aa6c <EraseScreen>:
-  18aa6c:	e3a04000 	mov	r4, #0
-  18aa70:	e3a05000 	mov	r5, #0
-  18aa74:	e3a06000 	mov	r6, #0
-  18aa78:	e3a07b01 	mov	r7, #1024	; 0x400
-  18aa7c:	e3a08c03 	mov	r8, #768	; 0x300
+0030ba74 <EraseScreen>:
+  30ba74:	e3a04000 	mov	r4, #0
+  30ba78:	e3a05000 	mov	r5, #0
+  30ba7c:	e3a06000 	mov	r6, #0
+  30ba80:	e3a07b01 	mov	r7, #1024	; 0x400
+  30ba84:	e3a08c03 	mov	r8, #768	; 0x300
 
-0018aa80 <XLoop>:
-  18aa80:	e1a00004 	mov	r0, r4
-  18aa84:	e1a01005 	mov	r1, r5
-  18aa88:	e1a02006 	mov	r2, r6
-  18aa8c:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18aa90:	eb00000a 	bl	18aac0 <DrawPixel>
-  18aa94:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
-  18aa98:	e2844001 	add	r4, r4, #1
-  18aa9c:	e1540007 	cmp	r4, r7
-  18aaa0:	bafffff6 	blt	18aa80 <XLoop>
-  18aaa4:	e3a04000 	mov	r4, #0
-  18aaa8:	e2855001 	add	r5, r5, #1
-  18aaac:	e1550008 	cmp	r5, r8
-  18aab0:	bafffff2 	blt	18aa80 <XLoop>
-  18aab4:	e1a0f00e 	mov	pc, lr
+0030ba88 <XLoop>:
+  30ba88:	e1a00004 	mov	r0, r4
+  30ba8c:	e1a01005 	mov	r1, r5
+  30ba90:	e1a02006 	mov	r2, r6
+  30ba94:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30ba98:	eb00000a 	bl	30bac8 <DrawPixel>
+  30ba9c:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  30baa0:	e2844001 	add	r4, r4, #1
+  30baa4:	e1540007 	cmp	r4, r7
+  30baa8:	bafffff6 	blt	30ba88 <XLoop>
+  30baac:	e3a04000 	mov	r4, #0
+  30bab0:	e2855001 	add	r5, r5, #1
+  30bab4:	e1550008 	cmp	r5, r8
+  30bab8:	bafffff2 	blt	30ba88 <XLoop>
+  30babc:	e1a0f00e 	mov	pc, lr
 
-0018aab8 <move>:
-  18aab8:	eb00001b 	bl	18ab2c <drawPicture2>
-  18aabc:	e1a0f00e 	mov	pc, lr
+0030bac0 <move>:
+  30bac0:	eb00001b 	bl	30bb34 <drawPicture2>
+  30bac4:	e1a0f00e 	mov	pc, lr
 
-0018aac0 <DrawPixel>:
-  18aac0:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
-  18aac4:	e0804501 	add	r4, r0, r1, lsl #10
-  18aac8:	e1a04084 	lsl	r4, r4, #1
-  18aacc:	e59f03d8 	ldr	r0, [pc, #984]	; 18aeac <Read_SNES_DONE+0x8>
-  18aad0:	e5900000 	ldr	r0, [r0]
-  18aad4:	e18020b4 	strh	r2, [r0, r4]
-  18aad8:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
-  18aadc:	e12fff1e 	bx	lr
+0030bac8 <DrawPixel>:
+  30bac8:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
+  30bacc:	e0804501 	add	r4, r0, r1, lsl #10
+  30bad0:	e1a04084 	lsl	r4, r4, #1
+  30bad4:	e59f07ac 	ldr	r0, [pc, #1964]	; 30c288 <Read_SNES_DONE2+0xc>
+  30bad8:	e5900000 	ldr	r0, [r0]
+  30badc:	e18020b4 	strh	r2, [r0, r4]
+  30bae0:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
+  30bae4:	e12fff1e 	bx	lr
 
-0018aae0 <drawPicture>:
-  18aae0:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18aae4:	e3a04000 	mov	r4, #0
-  18aae8:	e3a05000 	mov	r5, #0
-  18aaec:	e59f63bc 	ldr	r6, [pc, #956]	; 18aeb0 <Read_SNES_DONE+0xc>
-  18aaf0:	e3a07b01 	mov	r7, #1024	; 0x400
-  18aaf4:	e3a08c03 	mov	r8, #768	; 0x300
+0030bae8 <drawPicture>:
+  30bae8:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30baec:	e3a04000 	mov	r4, #0
+  30baf0:	e3a05000 	mov	r5, #0
+  30baf4:	e59f6790 	ldr	r6, [pc, #1936]	; 30c28c <Read_SNES_DONE2+0x10>
+  30baf8:	e3a07b01 	mov	r7, #1024	; 0x400
+  30bafc:	e3a08c03 	mov	r8, #768	; 0x300
 
-0018aaf8 <drawPictureLoop>:
-  18aaf8:	e1a00004 	mov	r0, r4
-  18aafc:	e1a01005 	mov	r1, r5
-  18ab00:	e0d620b2 	ldrh	r2, [r6], #2
-  18ab04:	ebffffed 	bl	18aac0 <DrawPixel>
-  18ab08:	e2844001 	add	r4, r4, #1
-  18ab0c:	e1540007 	cmp	r4, r7
-  18ab10:	bafffff8 	blt	18aaf8 <drawPictureLoop>
-  18ab14:	e3a04000 	mov	r4, #0
-  18ab18:	e2855001 	add	r5, r5, #1
-  18ab1c:	e1550008 	cmp	r5, r8
-  18ab20:	bafffff4 	blt	18aaf8 <drawPictureLoop>
-  18ab24:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
-  18ab28:	e1a0f00e 	mov	pc, lr
+0030bb00 <drawPictureLoop>:
+  30bb00:	e1a00004 	mov	r0, r4
+  30bb04:	e1a01005 	mov	r1, r5
+  30bb08:	e0d620b2 	ldrh	r2, [r6], #2
+  30bb0c:	ebffffed 	bl	30bac8 <DrawPixel>
+  30bb10:	e2844001 	add	r4, r4, #1
+  30bb14:	e1540007 	cmp	r4, r7
+  30bb18:	bafffff8 	blt	30bb00 <drawPictureLoop>
+  30bb1c:	e3a04000 	mov	r4, #0
+  30bb20:	e2855001 	add	r5, r5, #1
+  30bb24:	e1550008 	cmp	r5, r8
+  30bb28:	bafffff4 	blt	30bb00 <drawPictureLoop>
+  30bb2c:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  30bb30:	e1a0f00e 	mov	pc, lr
 
-0018ab2c <drawPicture2>:
-  18ab2c:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
-  18ab30:	e1a04000 	mov	r4, r0
-  18ab34:	e1a05001 	mov	r5, r1
-  18ab38:	e59f6374 	ldr	r6, [pc, #884]	; 18aeb4 <Read_SNES_DONE+0x10>
-  18ab3c:	e3a07020 	mov	r7, #32
-  18ab40:	e0877004 	add	r7, r7, r4
-  18ab44:	e1a09004 	mov	r9, r4
-  18ab48:	e3a08020 	mov	r8, #32
-  18ab4c:	e0888005 	add	r8, r8, r5
+0030bb34 <drawPicture2>:
+  30bb34:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30bb38:	e1a04000 	mov	r4, r0
+  30bb3c:	e1a05001 	mov	r5, r1
+  30bb40:	e59f6748 	ldr	r6, [pc, #1864]	; 30c290 <Read_SNES_DONE2+0x14>
+  30bb44:	e3a07020 	mov	r7, #32
+  30bb48:	e0877004 	add	r7, r7, r4
+  30bb4c:	e1a09004 	mov	r9, r4
+  30bb50:	e3a08020 	mov	r8, #32
+  30bb54:	e0888005 	add	r8, r8, r5
 
-0018ab50 <drawPictureLoop2>:
-  18ab50:	e1a00004 	mov	r0, r4
-  18ab54:	e1a01005 	mov	r1, r5
-  18ab58:	e0d620b2 	ldrh	r2, [r6], #2
-  18ab5c:	ebffffd7 	bl	18aac0 <DrawPixel>
-  18ab60:	e2844001 	add	r4, r4, #1
-  18ab64:	e1540007 	cmp	r4, r7
-  18ab68:	bafffff8 	blt	18ab50 <drawPictureLoop2>
-  18ab6c:	e1a04009 	mov	r4, r9
-  18ab70:	e2855001 	add	r5, r5, #1
-  18ab74:	e1550008 	cmp	r5, r8
-  18ab78:	bafffff4 	blt	18ab50 <drawPictureLoop2>
-  18ab7c:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
-  18ab80:	e1a0f00e 	mov	pc, lr
+0030bb58 <drawPictureLoop2>:
+  30bb58:	e1a00004 	mov	r0, r4
+  30bb5c:	e1a01005 	mov	r1, r5
+  30bb60:	e0d620b2 	ldrh	r2, [r6], #2
+  30bb64:	ebffffd7 	bl	30bac8 <DrawPixel>
+  30bb68:	e2844001 	add	r4, r4, #1
+  30bb6c:	e1540007 	cmp	r4, r7
+  30bb70:	bafffff8 	blt	30bb58 <drawPictureLoop2>
+  30bb74:	e1a04009 	mov	r4, r9
+  30bb78:	e2855001 	add	r5, r5, #1
+  30bb7c:	e1550008 	cmp	r5, r8
+  30bb80:	bafffff4 	blt	30bb58 <drawPictureLoop2>
+  30bb84:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  30bb88:	e1a0f00e 	mov	pc, lr
 
-0018ab84 <Init_GPIO>:
-  18ab84:	e3500009 	cmp	r0, #9
-  18ab88:	0a000004 	beq	18aba0 <LATCH>
-  18ab8c:	e350000a 	cmp	r0, #10
-  18ab90:	0a00000b 	beq	18abc4 <DATA>
-  18ab94:	e350000b 	cmp	r0, #11
-  18ab98:	0a000012 	beq	18abe8 <CLOCK>
-  18ab9c:	ea00001a 	b	18ac0c <Init_GPIO_DONE>
+0030bb8c <drawGoomba>:
+  30bb8c:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30bb90:	e3a04000 	mov	r4, #0
+  30bb94:	e3a05000 	mov	r5, #0
+  30bb98:	e59f66f4 	ldr	r6, [pc, #1780]	; 30c294 <Read_SNES_DONE2+0x18>
+  30bb9c:	e3a07020 	mov	r7, #32
+  30bba0:	e3a08020 	mov	r8, #32
 
-0018aba0 <LATCH>:
-  18aba0:	e59f0310 	ldr	r0, [pc, #784]	; 18aeb8 <Read_SNES_DONE+0x14>
-  18aba4:	e5902000 	ldr	r2, [r0]
-  18aba8:	e3a03007 	mov	r3, #7
-  18abac:	e1a03d83 	lsl	r3, r3, #27
-  18abb0:	e1c22003 	bic	r2, r2, r3
-  18abb4:	e1a01d81 	lsl	r1, r1, #27
-  18abb8:	e1822001 	orr	r2, r2, r1
-  18abbc:	e5802000 	str	r2, [r0]
-  18abc0:	ea000011 	b	18ac0c <Init_GPIO_DONE>
+0030bba4 <drawGoombaLoop>:
+  30bba4:	e1a00004 	mov	r0, r4
+  30bba8:	e1a01005 	mov	r1, r5
+  30bbac:	e0d620b2 	ldrh	r2, [r6], #2
+  30bbb0:	ebffffc4 	bl	30bac8 <DrawPixel>
+  30bbb4:	e2844001 	add	r4, r4, #1
+  30bbb8:	e1540007 	cmp	r4, r7
+  30bbbc:	bafffff8 	blt	30bba4 <drawGoombaLoop>
+  30bbc0:	e3a04000 	mov	r4, #0
+  30bbc4:	e2855001 	add	r5, r5, #1
+  30bbc8:	e1550008 	cmp	r5, r8
+  30bbcc:	bafffff4 	blt	30bba4 <drawGoombaLoop>
+  30bbd0:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  30bbd4:	e1a0f00e 	mov	pc, lr
 
-0018abc4 <DATA>:
-  18abc4:	e59f02f0 	ldr	r0, [pc, #752]	; 18aebc <Read_SNES_DONE+0x18>
-  18abc8:	e5902000 	ldr	r2, [r0]
-  18abcc:	e3a03007 	mov	r3, #7
-  18abd0:	e1a03003 	mov	r3, r3
-  18abd4:	e1c22003 	bic	r2, r2, r3
-  18abd8:	e1a01001 	mov	r1, r1
-  18abdc:	e1822001 	orr	r2, r2, r1
-  18abe0:	e5802000 	str	r2, [r0]
-  18abe4:	ea000008 	b	18ac0c <Init_GPIO_DONE>
+0030bbd8 <drawStartScreen>:
+  30bbd8:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30bbdc:	e3a04000 	mov	r4, #0
+  30bbe0:	e3a05000 	mov	r5, #0
+  30bbe4:	e59f66ac 	ldr	r6, [pc, #1708]	; 30c298 <Read_SNES_DONE2+0x1c>
+  30bbe8:	e3a07b01 	mov	r7, #1024	; 0x400
+  30bbec:	e3a08c03 	mov	r8, #768	; 0x300
 
-0018abe8 <CLOCK>:
-  18abe8:	e59f02cc 	ldr	r0, [pc, #716]	; 18aebc <Read_SNES_DONE+0x18>
-  18abec:	e5902000 	ldr	r2, [r0]
-  18abf0:	e3a03007 	mov	r3, #7
-  18abf4:	e1a03183 	lsl	r3, r3, #3
-  18abf8:	e1c22003 	bic	r2, r2, r3
-  18abfc:	e1a01181 	lsl	r1, r1, #3
-  18ac00:	e1822001 	orr	r2, r2, r1
-  18ac04:	e5802000 	str	r2, [r0]
-  18ac08:	eaffffff 	b	18ac0c <Init_GPIO_DONE>
+0030bbf0 <drawStartScreenLoop>:
+  30bbf0:	e1a00004 	mov	r0, r4
+  30bbf4:	e1a01005 	mov	r1, r5
+  30bbf8:	e0d620b2 	ldrh	r2, [r6], #2
+  30bbfc:	ebffffb1 	bl	30bac8 <DrawPixel>
+  30bc00:	e2844001 	add	r4, r4, #1
+  30bc04:	e1540007 	cmp	r4, r7
+  30bc08:	bafffff8 	blt	30bbf0 <drawStartScreenLoop>
+  30bc0c:	e3a04000 	mov	r4, #0
+  30bc10:	e2855001 	add	r5, r5, #1
+  30bc14:	e1550008 	cmp	r5, r8
+  30bc18:	bafffff4 	blt	30bbf0 <drawStartScreenLoop>
+  30bc1c:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  30bc20:	e1a0f00e 	mov	pc, lr
 
-0018ac0c <Init_GPIO_DONE>:
-  18ac0c:	e1a0f00e 	mov	pc, lr
+0030bc24 <drawMushroom>:
+  30bc24:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+  30bc28:	e1a04000 	mov	r4, r0
+  30bc2c:	e1a05001 	mov	r5, r1
+  30bc30:	e59f6664 	ldr	r6, [pc, #1636]	; 30c29c <Read_SNES_DONE2+0x20>
+  30bc34:	e3a07020 	mov	r7, #32
+  30bc38:	e0877004 	add	r7, r7, r4
+  30bc3c:	e1a09004 	mov	r9, r4
+  30bc40:	e3a08020 	mov	r8, #32
+  30bc44:	e0888005 	add	r8, r8, r5
 
-0018ac10 <Write_Latch>:
-  18ac10:	e3500000 	cmp	r0, #0
-  18ac14:	0a000001 	beq	18ac20 <Latch_W_0>
-  18ac18:	e3500001 	cmp	r0, #1
-  18ac1c:	0a000004 	beq	18ac34 <Latch_W_1>
+0030bc48 <drawMushroomLoop>:
+  30bc48:	e1a00004 	mov	r0, r4
+  30bc4c:	e1a01005 	mov	r1, r5
+  30bc50:	e0d620b2 	ldrh	r2, [r6], #2
+  30bc54:	ebffff9b 	bl	30bac8 <DrawPixel>
+  30bc58:	e2844001 	add	r4, r4, #1
+  30bc5c:	e1540007 	cmp	r4, r7
+  30bc60:	bafffff8 	blt	30bc48 <drawMushroomLoop>
+  30bc64:	e1a04009 	mov	r4, r9
+  30bc68:	e2855001 	add	r5, r5, #1
+  30bc6c:	e1550008 	cmp	r5, r8
+  30bc70:	bafffff4 	blt	30bc48 <drawMushroomLoop>
+  30bc74:	e49de004 	pop	{lr}		; (ldr lr, [sp], #4)
+  30bc78:	e1a0f00e 	mov	pc, lr
 
-0018ac20 <Latch_W_0>:
-  18ac20:	e59f1298 	ldr	r1, [pc, #664]	; 18aec0 <Read_SNES_DONE+0x1c>
-  18ac24:	e3a02001 	mov	r2, #1
-  18ac28:	e1a02482 	lsl	r2, r2, #9
-  18ac2c:	e5812000 	str	r2, [r1]
-  18ac30:	ea000003 	b	18ac44 <Write_Latch_DONE>
+0030bc7c <Init_GPIO>:
+  30bc7c:	e3500009 	cmp	r0, #9
+  30bc80:	0a000004 	beq	30bc98 <LATCH>
+  30bc84:	e350000a 	cmp	r0, #10
+  30bc88:	0a00000b 	beq	30bcbc <DATA>
+  30bc8c:	e350000b 	cmp	r0, #11
+  30bc90:	0a000012 	beq	30bce0 <CLOCK>
+  30bc94:	ea00001a 	b	30bd04 <Init_GPIO_DONE>
 
-0018ac34 <Latch_W_1>:
-  18ac34:	e59f1288 	ldr	r1, [pc, #648]	; 18aec4 <Read_SNES_DONE+0x20>
-  18ac38:	e3a02001 	mov	r2, #1
-  18ac3c:	e1a02482 	lsl	r2, r2, #9
-  18ac40:	e5812000 	str	r2, [r1]
+0030bc98 <LATCH>:
+  30bc98:	e59f0600 	ldr	r0, [pc, #1536]	; 30c2a0 <Read_SNES_DONE2+0x24>
+  30bc9c:	e5902000 	ldr	r2, [r0]
+  30bca0:	e3a03007 	mov	r3, #7
+  30bca4:	e1a03d83 	lsl	r3, r3, #27
+  30bca8:	e1c22003 	bic	r2, r2, r3
+  30bcac:	e1a01d81 	lsl	r1, r1, #27
+  30bcb0:	e1822001 	orr	r2, r2, r1
+  30bcb4:	e5802000 	str	r2, [r0]
+  30bcb8:	ea000011 	b	30bd04 <Init_GPIO_DONE>
 
-0018ac44 <Write_Latch_DONE>:
-  18ac44:	e1a0f00e 	mov	pc, lr
+0030bcbc <DATA>:
+  30bcbc:	e59f05e0 	ldr	r0, [pc, #1504]	; 30c2a4 <Read_SNES_DONE2+0x28>
+  30bcc0:	e5902000 	ldr	r2, [r0]
+  30bcc4:	e3a03007 	mov	r3, #7
+  30bcc8:	e1a03003 	mov	r3, r3
+  30bccc:	e1c22003 	bic	r2, r2, r3
+  30bcd0:	e1a01001 	mov	r1, r1
+  30bcd4:	e1822001 	orr	r2, r2, r1
+  30bcd8:	e5802000 	str	r2, [r0]
+  30bcdc:	ea000008 	b	30bd04 <Init_GPIO_DONE>
 
-0018ac48 <Write_Clock>:
-  18ac48:	e3500000 	cmp	r0, #0
-  18ac4c:	0a000001 	beq	18ac58 <Clock_W_0>
-  18ac50:	e3500001 	cmp	r0, #1
-  18ac54:	0a000004 	beq	18ac6c <Clock_W_1>
+0030bce0 <CLOCK>:
+  30bce0:	e59f05bc 	ldr	r0, [pc, #1468]	; 30c2a4 <Read_SNES_DONE2+0x28>
+  30bce4:	e5902000 	ldr	r2, [r0]
+  30bce8:	e3a03007 	mov	r3, #7
+  30bcec:	e1a03183 	lsl	r3, r3, #3
+  30bcf0:	e1c22003 	bic	r2, r2, r3
+  30bcf4:	e1a01181 	lsl	r1, r1, #3
+  30bcf8:	e1822001 	orr	r2, r2, r1
+  30bcfc:	e5802000 	str	r2, [r0]
+  30bd00:	eaffffff 	b	30bd04 <Init_GPIO_DONE>
 
-0018ac58 <Clock_W_0>:
-  18ac58:	e59f1260 	ldr	r1, [pc, #608]	; 18aec0 <Read_SNES_DONE+0x1c>
-  18ac5c:	e3a02001 	mov	r2, #1
-  18ac60:	e1a02582 	lsl	r2, r2, #11
-  18ac64:	e5812000 	str	r2, [r1]
-  18ac68:	ea000003 	b	18ac7c <Write_Clock_DONE>
+0030bd04 <Init_GPIO_DONE>:
+  30bd04:	e1a0f00e 	mov	pc, lr
 
-0018ac6c <Clock_W_1>:
-  18ac6c:	e59f1250 	ldr	r1, [pc, #592]	; 18aec4 <Read_SNES_DONE+0x20>
-  18ac70:	e3a02001 	mov	r2, #1
-  18ac74:	e1a02582 	lsl	r2, r2, #11
-  18ac78:	e5812000 	str	r2, [r1]
+0030bd08 <Write_Latch>:
+  30bd08:	e3500000 	cmp	r0, #0
+  30bd0c:	0a000001 	beq	30bd18 <Latch_W_0>
+  30bd10:	e3500001 	cmp	r0, #1
+  30bd14:	0a000004 	beq	30bd2c <Latch_W_1>
 
-0018ac7c <Write_Clock_DONE>:
-  18ac7c:	e1a0f00e 	mov	pc, lr
+0030bd18 <Latch_W_0>:
+  30bd18:	e59f1588 	ldr	r1, [pc, #1416]	; 30c2a8 <Read_SNES_DONE2+0x2c>
+  30bd1c:	e3a02001 	mov	r2, #1
+  30bd20:	e1a02482 	lsl	r2, r2, #9
+  30bd24:	e5812000 	str	r2, [r1]
+  30bd28:	ea000003 	b	30bd3c <Write_Latch_DONE>
 
-0018ac80 <Read_Data>:
-  18ac80:	e59f1240 	ldr	r1, [pc, #576]	; 18aec8 <Read_SNES_DONE+0x24>
-  18ac84:	e5912000 	ldr	r2, [r1]
-  18ac88:	e3a03001 	mov	r3, #1
-  18ac8c:	e1a03503 	lsl	r3, r3, #10
-  18ac90:	e0022003 	and	r2, r2, r3
-  18ac94:	e3320000 	teq	r2, #0
-  18ac98:	03a04000 	moveq	r4, #0
-  18ac9c:	13a04001 	movne	r4, #1
+0030bd2c <Latch_W_1>:
+  30bd2c:	e59f1578 	ldr	r1, [pc, #1400]	; 30c2ac <Read_SNES_DONE2+0x30>
+  30bd30:	e3a02001 	mov	r2, #1
+  30bd34:	e1a02482 	lsl	r2, r2, #9
+  30bd38:	e5812000 	str	r2, [r1]
 
-0018aca0 <Read_Data_DONE>:
-  18aca0:	e1a0f00e 	mov	pc, lr
+0030bd3c <Write_Latch_DONE>:
+  30bd3c:	e1a0f00e 	mov	pc, lr
 
-0018aca4 <Wait>:
-  18aca4:	e59f1220 	ldr	r1, [pc, #544]	; 18aecc <Read_SNES_DONE+0x28>
-  18aca8:	e5912000 	ldr	r2, [r1]
-  18acac:	e0822000 	add	r2, r2, r0
+0030bd40 <Write_Clock>:
+  30bd40:	e3500000 	cmp	r0, #0
+  30bd44:	0a000001 	beq	30bd50 <Clock_W_0>
+  30bd48:	e3500001 	cmp	r0, #1
+  30bd4c:	0a000004 	beq	30bd64 <Clock_W_1>
 
-0018acb0 <waitLoop>:
-  18acb0:	e5913000 	ldr	r3, [r1]
-  18acb4:	e1520003 	cmp	r2, r3
-  18acb8:	8afffffc 	bhi	18acb0 <waitLoop>
+0030bd50 <Clock_W_0>:
+  30bd50:	e59f1550 	ldr	r1, [pc, #1360]	; 30c2a8 <Read_SNES_DONE2+0x2c>
+  30bd54:	e3a02001 	mov	r2, #1
+  30bd58:	e1a02582 	lsl	r2, r2, #11
+  30bd5c:	e5812000 	str	r2, [r1]
+  30bd60:	ea000003 	b	30bd74 <Write_Clock_DONE>
 
-0018acbc <Wait_DONE>:
-  18acbc:	e1a0f00e 	mov	pc, lr
+0030bd64 <Clock_W_1>:
+  30bd64:	e59f1540 	ldr	r1, [pc, #1344]	; 30c2ac <Read_SNES_DONE2+0x30>
+  30bd68:	e3a02001 	mov	r2, #1
+  30bd6c:	e1a02582 	lsl	r2, r2, #11
+  30bd70:	e5812000 	str	r2, [r1]
 
-0018acc0 <Read_SNES>:
-  18acc0:	e3a00001 	mov	r0, #1
-  18acc4:	ebffffdf 	bl	18ac48 <Write_Clock>
-  18acc8:	e3a09000 	mov	r9, #0
+0030bd74 <Write_Clock_DONE>:
+  30bd74:	e1a0f00e 	mov	pc, lr
 
-0018accc <startOfLoop>:
-  18accc:	e3a00001 	mov	r0, #1
-  18acd0:	ebffffce 	bl	18ac10 <Write_Latch>
-  18acd4:	e3a0000c 	mov	r0, #12
-  18acd8:	ebfffff1 	bl	18aca4 <Wait>
-  18acdc:	e3a00000 	mov	r0, #0
-  18ace0:	ebffffca 	bl	18ac10 <Write_Latch>
-  18ace4:	e3a05000 	mov	r5, #0
-  18ace8:	e3a07000 	mov	r7, #0
+0030bd78 <Read_Data>:
+  30bd78:	e59f1530 	ldr	r1, [pc, #1328]	; 30c2b0 <Read_SNES_DONE2+0x34>
+  30bd7c:	e5912000 	ldr	r2, [r1]
+  30bd80:	e3a03001 	mov	r3, #1
+  30bd84:	e1a03503 	lsl	r3, r3, #10
+  30bd88:	e0022003 	and	r2, r2, r3
+  30bd8c:	e3320000 	teq	r2, #0
+  30bd90:	03a04000 	moveq	r4, #0
+  30bd94:	13a04001 	movne	r4, #1
 
-0018acec <pulseLoop>:
-  18acec:	e3550010 	cmp	r5, #16
-  18acf0:	aa00000c 	bge	18ad28 <pulseLoopDone>
-  18acf4:	e3a00006 	mov	r0, #6
-  18acf8:	ebffffe9 	bl	18aca4 <Wait>
-  18acfc:	e3a00000 	mov	r0, #0
-  18ad00:	ebffffd0 	bl	18ac48 <Write_Clock>
-  18ad04:	e3a00006 	mov	r0, #6
-  18ad08:	ebffffe5 	bl	18aca4 <Wait>
-  18ad0c:	ebffffdb 	bl	18ac80 <Read_Data>
-  18ad10:	e1a04514 	lsl	r4, r4, r5
-  18ad14:	e1877004 	orr	r7, r7, r4
-  18ad18:	e3a00001 	mov	r0, #1
-  18ad1c:	ebffffc9 	bl	18ac48 <Write_Clock>
-  18ad20:	e2855001 	add	r5, r5, #1
-  18ad24:	eafffff0 	b	18acec <pulseLoop>
+0030bd98 <Read_Data_DONE>:
+  30bd98:	e1a0f00e 	mov	pc, lr
 
-0018ad28 <pulseLoopDone>:
-  18ad28:	e1590007 	cmp	r9, r7
-  18ad2c:	0affffe6 	beq	18accc <startOfLoop>
-  18ad30:	e1a09007 	mov	r9, r7
+0030bd9c <Wait>:
+  30bd9c:	e59f1510 	ldr	r1, [pc, #1296]	; 30c2b4 <Read_SNES_DONE2+0x38>
+  30bda0:	e5912000 	ldr	r2, [r1]
+  30bda4:	e0822000 	add	r2, r2, r0
 
-0018ad34 <topCheckLoop>:
-  18ad34:	e3a06001 	mov	r6, #1
-  18ad38:	e1a06006 	mov	r6, r6
-  18ad3c:	e0068007 	and	r8, r6, r7
-  18ad40:	e3580000 	cmp	r8, #0
-  18ad44:	1a000011 	bne	18ad90 <next1>
-  18ad48:	e3a0cf7d 	mov	ip, #500	; 0x1f4
+0030bda8 <waitLoop>:
+  30bda8:	e5913000 	ldr	r3, [r1]
+  30bdac:	e1520003 	cmp	r2, r3
+  30bdb0:	8afffffc 	bhi	30bda8 <waitLoop>
 
-0018ad4c <testJump>:
-  18ad4c:	e15b000c 	cmp	fp, ip
-  18ad50:	da000005 	ble	18ad6c <doneUp>
-  18ad54:	e24bb001 	sub	fp, fp, #1
-  18ad58:	e1a0100b 	mov	r1, fp
-  18ad5c:	e59f016c 	ldr	r0, [pc, #364]	; 18aed0 <Read_SNES_DONE+0x2c>
-  18ad60:	e5900000 	ldr	r0, [r0]
-  18ad64:	ebffff70 	bl	18ab2c <drawPicture2>
-  18ad68:	eafffff7 	b	18ad4c <testJump>
+0030bdb4 <Wait_DONE>:
+  30bdb4:	e1a0f00e 	mov	pc, lr
 
-0018ad6c <doneUp>:
-  18ad6c:	e59fc134 	ldr	ip, [pc, #308]	; 18aea8 <Read_SNES_DONE+0x4>
+0030bdb8 <Read_SNES>:
+  30bdb8:	e3a00001 	mov	r0, #1
+  30bdbc:	ebffffdf 	bl	30bd40 <Write_Clock>
+  30bdc0:	e3a09000 	mov	r9, #0
 
-0018ad70 <testJump2>:
-  18ad70:	e15b000c 	cmp	fp, ip
-  18ad74:	ca000035 	bgt	18ae50 <next8>
-  18ad78:	e28bb001 	add	fp, fp, #1
-  18ad7c:	e1a0100b 	mov	r1, fp
-  18ad80:	e59f0148 	ldr	r0, [pc, #328]	; 18aed0 <Read_SNES_DONE+0x2c>
-  18ad84:	e5900000 	ldr	r0, [r0]
-  18ad88:	ebffff67 	bl	18ab2c <drawPicture2>
-  18ad8c:	eafffff7 	b	18ad70 <testJump2>
+0030bdc4 <startOfLoop>:
+  30bdc4:	e3a00001 	mov	r0, #1
+  30bdc8:	ebffffce 	bl	30bd08 <Write_Latch>
+  30bdcc:	e3a0000c 	mov	r0, #12
+  30bdd0:	ebfffff1 	bl	30bd9c <Wait>
+  30bdd4:	e3a00000 	mov	r0, #0
+  30bdd8:	ebffffca 	bl	30bd08 <Write_Latch>
+  30bddc:	e3a05000 	mov	r5, #0
+  30bde0:	e3a07000 	mov	r7, #0
 
-0018ad90 <next1>:
-  18ad90:	e3a06001 	mov	r6, #1
-  18ad94:	e1a06086 	lsl	r6, r6, #1
-  18ad98:	e0068007 	and	r8, r6, r7
-  18ad9c:	e3580000 	cmp	r8, #0
-  18ada0:	1affffff 	bne	18ada4 <next2>
+0030bde4 <pulseLoop>:
+  30bde4:	e3550010 	cmp	r5, #16
+  30bde8:	aa00000c 	bge	30be20 <pulseLoopDone>
+  30bdec:	e3a00006 	mov	r0, #6
+  30bdf0:	ebffffe9 	bl	30bd9c <Wait>
+  30bdf4:	e3a00000 	mov	r0, #0
+  30bdf8:	ebffffd0 	bl	30bd40 <Write_Clock>
+  30bdfc:	e3a00006 	mov	r0, #6
+  30be00:	ebffffe5 	bl	30bd9c <Wait>
+  30be04:	ebffffdb 	bl	30bd78 <Read_Data>
+  30be08:	e1a04514 	lsl	r4, r4, r5
+  30be0c:	e1877004 	orr	r7, r7, r4
+  30be10:	e3a00001 	mov	r0, #1
+  30be14:	ebffffc9 	bl	30bd40 <Write_Clock>
+  30be18:	e2855001 	add	r5, r5, #1
+  30be1c:	eafffff0 	b	30bde4 <pulseLoop>
 
-0018ada4 <next2>:
-  18ada4:	e3a06001 	mov	r6, #1
-  18ada8:	e1a06106 	lsl	r6, r6, #2
-  18adac:	e0068007 	and	r8, r6, r7
-  18adb0:	e3580000 	cmp	r8, #0
-  18adb4:	1affffff 	bne	18adb8 <next3>
+0030be20 <pulseLoopDone>:
+  30be20:	e1590007 	cmp	r9, r7
+  30be24:	0affffe6 	beq	30bdc4 <startOfLoop>
+  30be28:	e1a09007 	mov	r9, r7
 
-0018adb8 <next3>:
-  18adb8:	e3a06001 	mov	r6, #1
-  18adbc:	e1a06186 	lsl	r6, r6, #3
-  18adc0:	e0068007 	and	r8, r6, r7
-  18adc4:	e3580000 	cmp	r8, #0
-  18adc8:	1affffff 	bne	18adcc <next4>
+0030be2c <topCheckLoop>:
+  30be2c:	e3a06081 	mov	r6, #129	; 0x81
+  30be30:	e0068007 	and	r8, r6, r7
+  30be34:	e3580000 	cmp	r8, #0
+  30be38:	1a00001f 	bne	30bebc <bnext>
+  30be3c:	e3a0cf7d 	mov	ip, #500	; 0x1f4
 
-0018adcc <next4>:
-  18adcc:	e3a06001 	mov	r6, #1
-  18add0:	e1a06206 	lsl	r6, r6, #4
-  18add4:	e0068007 	and	r8, r6, r7
-  18add8:	e3580000 	cmp	r8, #0
-  18addc:	1affffff 	bne	18ade0 <next5>
+0030be40 <forwardParabola>:
+  30be40:	e59f0470 	ldr	r0, [pc, #1136]	; 30c2b8 <Read_SNES_DONE2+0x3c>
+  30be44:	e590b000 	ldr	fp, [r0]
+  30be48:	e15b000c 	cmp	fp, ip
+  30be4c:	0a00000a 	beq	30be7c <doneUp2>
+  30be50:	e24bb001 	sub	fp, fp, #1
+  30be54:	e580b000 	str	fp, [r0]
+  30be58:	e59f245c 	ldr	r2, [pc, #1116]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30be5c:	e5920000 	ldr	r0, [r2]
+  30be60:	e1a0100b 	mov	r1, fp
+  30be64:	ebffff32 	bl	30bb34 <drawPicture2>
+  30be68:	e59f244c 	ldr	r2, [pc, #1100]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30be6c:	e5920000 	ldr	r0, [r2]
+  30be70:	e2800001 	add	r0, r0, #1
+  30be74:	e5820000 	str	r0, [r2]
+  30be78:	eafffff0 	b	30be40 <forwardParabola>
 
-0018ade0 <next5>:
-  18ade0:	e3a06001 	mov	r6, #1
-  18ade4:	e1a06286 	lsl	r6, r6, #5
-  18ade8:	e0068007 	and	r8, r6, r7
-  18adec:	e3580000 	cmp	r8, #0
-  18adf0:	1affffff 	bne	18adf4 <next6>
+0030be7c <doneUp2>:
+  30be7c:	e59fc400 	ldr	ip, [pc, #1024]	; 30c284 <Read_SNES_DONE2+0x8>
 
-0018adf4 <next6>:
-  18adf4:	e3a06001 	mov	r6, #1
-  18adf8:	e1a06306 	lsl	r6, r6, #6
-  18adfc:	e0068007 	and	r8, r6, r7
-  18ae00:	e3580000 	cmp	r8, #0
-  18ae04:	1a000006 	bne	18ae24 <next7>
-  18ae08:	e59f10c0 	ldr	r1, [pc, #192]	; 18aed0 <Read_SNES_DONE+0x2c>
-  18ae0c:	e5910000 	ldr	r0, [r1]
-  18ae10:	e2400001 	sub	r0, r0, #1
-  18ae14:	e5810000 	str	r0, [r1]
-  18ae18:	e1a0100b 	mov	r1, fp
-  18ae1c:	ebffff42 	bl	18ab2c <drawPicture2>
-  18ae20:	eb00000a 	bl	18ae50 <next8>
+0030be80 <forwardParabola2>:
+  30be80:	e59f0430 	ldr	r0, [pc, #1072]	; 30c2b8 <Read_SNES_DONE2+0x3c>
+  30be84:	e590b000 	ldr	fp, [r0]
+  30be88:	e15b000c 	cmp	fp, ip
+  30be8c:	0a00006d 	beq	30c048 <next8>
+  30be90:	e28bb001 	add	fp, fp, #1
+  30be94:	e580b000 	str	fp, [r0]
+  30be98:	e1a0100b 	mov	r1, fp
+  30be9c:	e59f2418 	ldr	r2, [pc, #1048]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30bea0:	e5920000 	ldr	r0, [r2]
+  30bea4:	ebffff22 	bl	30bb34 <drawPicture2>
+  30bea8:	e59f240c 	ldr	r2, [pc, #1036]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30beac:	e5920000 	ldr	r0, [r2]
+  30beb0:	e2800001 	add	r0, r0, #1
+  30beb4:	e5820000 	str	r0, [r2]
+  30beb8:	eafffff0 	b	30be80 <forwardParabola2>
 
-0018ae24 <next7>:
-  18ae24:	e3a06001 	mov	r6, #1
-  18ae28:	e1a06386 	lsl	r6, r6, #7
-  18ae2c:	e0068007 	and	r8, r6, r7
-  18ae30:	e3580000 	cmp	r8, #0
-  18ae34:	1a000005 	bne	18ae50 <next8>
-  18ae38:	e59f1090 	ldr	r1, [pc, #144]	; 18aed0 <Read_SNES_DONE+0x2c>
-  18ae3c:	e5910000 	ldr	r0, [r1]
-  18ae40:	e2800001 	add	r0, r0, #1
-  18ae44:	e5810000 	str	r0, [r1]
-  18ae48:	e1a0100b 	mov	r1, fp
-  18ae4c:	ebffff36 	bl	18ab2c <drawPicture2>
+0030bebc <bnext>:
+  30bebc:	e3a06041 	mov	r6, #65	; 0x41
+  30bec0:	e0068007 	and	r8, r6, r7
+  30bec4:	e3580000 	cmp	r8, #0
+  30bec8:	1a000015 	bne	30bf24 <bnext2>
+  30becc:	e3a0cf7d 	mov	ip, #500	; 0x1f4
 
-0018ae50 <next8>:
-  18ae50:	e3a06001 	mov	r6, #1
-  18ae54:	e1a06406 	lsl	r6, r6, #8
-  18ae58:	e0068007 	and	r8, r6, r7
-  18ae5c:	e3580000 	cmp	r8, #0
-  18ae60:	1affffff 	bne	18ae64 <next9>
+0030bed0 <backwardParabola>:
+  30bed0:	e15b000c 	cmp	fp, ip
+  30bed4:	da000007 	ble	30bef8 <doneUpv2>
+  30bed8:	e24bb001 	sub	fp, fp, #1
+  30bedc:	e1a0100b 	mov	r1, fp
+  30bee0:	e59f23d4 	ldr	r2, [pc, #980]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30bee4:	e5920000 	ldr	r0, [r2]
+  30bee8:	e2400001 	sub	r0, r0, #1
+  30beec:	e5820000 	str	r0, [r2]
+  30bef0:	ebffff0f 	bl	30bb34 <drawPicture2>
+  30bef4:	eafffff5 	b	30bed0 <backwardParabola>
 
-0018ae64 <next9>:
-  18ae64:	e3a06001 	mov	r6, #1
-  18ae68:	e1a06486 	lsl	r6, r6, #9
-  18ae6c:	e0068007 	and	r8, r6, r7
-  18ae70:	e3580000 	cmp	r8, #0
-  18ae74:	1affffff 	bne	18ae78 <next10>
+0030bef8 <doneUpv2>:
+  30bef8:	e59fc384 	ldr	ip, [pc, #900]	; 30c284 <Read_SNES_DONE2+0x8>
 
-0018ae78 <next10>:
-  18ae78:	e3a06001 	mov	r6, #1
-  18ae7c:	e1a06506 	lsl	r6, r6, #10
-  18ae80:	e0068007 	and	r8, r6, r7
-  18ae84:	e3580000 	cmp	r8, #0
-  18ae88:	1affffff 	bne	18ae8c <next11>
+0030befc <backwardParabola2>:
+  30befc:	e15b000c 	cmp	fp, ip
+  30bf00:	0a000050 	beq	30c048 <next8>
+  30bf04:	e28bb001 	add	fp, fp, #1
+  30bf08:	e1a0100b 	mov	r1, fp
+  30bf0c:	e59f23a8 	ldr	r2, [pc, #936]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30bf10:	e5920000 	ldr	r0, [r2]
+  30bf14:	e2400001 	sub	r0, r0, #1
+  30bf18:	e5820000 	str	r0, [r2]
+  30bf1c:	ebffff04 	bl	30bb34 <drawPicture2>
+  30bf20:	eafffff5 	b	30befc <backwardParabola2>
 
-0018ae8c <next11>:
-  18ae8c:	e3a06001 	mov	r6, #1
-  18ae90:	e1a06586 	lsl	r6, r6, #11
-  18ae94:	e0068007 	and	r8, r6, r7
-  18ae98:	e3580000 	cmp	r8, #0
-  18ae9c:	1affffff 	bne	18aea0 <CheckLoopDone>
+0030bf24 <bnext2>:
+  30bf24:	e3a06001 	mov	r6, #1
+  30bf28:	e1a06006 	mov	r6, r6
+  30bf2c:	e0068007 	and	r8, r6, r7
+  30bf30:	e3580000 	cmp	r8, #0
+  30bf34:	1a000013 	bne	30bf88 <next1>
+  30bf38:	e3a0cf7d 	mov	ip, #500	; 0x1f4
 
-0018aea0 <CheckLoopDone>:
-  18aea0:	eaffff89 	b	18accc <startOfLoop>
+0030bf3c <testJump>:
+  30bf3c:	e15b000c 	cmp	fp, ip
+  30bf40:	da000006 	ble	30bf60 <doneUp>
+  30bf44:	e24bb001 	sub	fp, fp, #1
+  30bf48:	e1a0100b 	mov	r1, fp
+  30bf4c:	e59f2368 	ldr	r2, [pc, #872]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30bf50:	e5920000 	ldr	r0, [r2]
+  30bf54:	e5820000 	str	r0, [r2]
+  30bf58:	ebfffef5 	bl	30bb34 <drawPicture2>
+  30bf5c:	eafffff6 	b	30bf3c <testJump>
 
-0018aea4 <Read_SNES_DONE>:
-  18aea4:	e1a0f00e 	mov	pc, lr
-  18aea8:	00000267 	.word	0x00000267
-  18aeac:	000090e0 	.word	0x000090e0
-  18aeb0:	0000a0f8 	.word	0x0000a0f8
-  18aeb4:	000098f8 	.word	0x000098f8
-  18aeb8:	3f200000 	.word	0x3f200000
-  18aebc:	3f200004 	.word	0x3f200004
-  18aec0:	3f200028 	.word	0x3f200028
-  18aec4:	3f20001c 	.word	0x3f20001c
-  18aec8:	3f200034 	.word	0x3f200034
-  18aecc:	3f003004 	.word	0x3f003004
-  18aed0:	000090f0 	.word	0x000090f0
+0030bf60 <doneUp>:
+  30bf60:	e59fc31c 	ldr	ip, [pc, #796]	; 30c284 <Read_SNES_DONE2+0x8>
+
+0030bf64 <testJump2>:
+  30bf64:	e15b000c 	cmp	fp, ip
+  30bf68:	0a000036 	beq	30c048 <next8>
+  30bf6c:	e28bb001 	add	fp, fp, #1
+  30bf70:	e1a0100b 	mov	r1, fp
+  30bf74:	e59f2340 	ldr	r2, [pc, #832]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30bf78:	e5920000 	ldr	r0, [r2]
+  30bf7c:	e5820000 	str	r0, [r2]
+  30bf80:	ebfffeeb 	bl	30bb34 <drawPicture2>
+  30bf84:	eafffff6 	b	30bf64 <testJump2>
+
+0030bf88 <next1>:
+  30bf88:	e3a06001 	mov	r6, #1
+  30bf8c:	e1a06086 	lsl	r6, r6, #1
+  30bf90:	e0068007 	and	r8, r6, r7
+  30bf94:	e3580000 	cmp	r8, #0
+  30bf98:	1affffff 	bne	30bf9c <next2>
+
+0030bf9c <next2>:
+  30bf9c:	e3a06001 	mov	r6, #1
+  30bfa0:	e1a06106 	lsl	r6, r6, #2
+  30bfa4:	e0068007 	and	r8, r6, r7
+  30bfa8:	e3580000 	cmp	r8, #0
+  30bfac:	1affffff 	bne	30bfb0 <next3>
+
+0030bfb0 <next3>:
+  30bfb0:	e3a06001 	mov	r6, #1
+  30bfb4:	e1a06186 	lsl	r6, r6, #3
+  30bfb8:	e0068007 	and	r8, r6, r7
+  30bfbc:	e3580000 	cmp	r8, #0
+  30bfc0:	1affffff 	bne	30bfc4 <next4>
+
+0030bfc4 <next4>:
+  30bfc4:	e3a06001 	mov	r6, #1
+  30bfc8:	e1a06206 	lsl	r6, r6, #4
+  30bfcc:	e0068007 	and	r8, r6, r7
+  30bfd0:	e3580000 	cmp	r8, #0
+  30bfd4:	1affffff 	bne	30bfd8 <next5>
+
+0030bfd8 <next5>:
+  30bfd8:	e3a06001 	mov	r6, #1
+  30bfdc:	e1a06286 	lsl	r6, r6, #5
+  30bfe0:	e0068007 	and	r8, r6, r7
+  30bfe4:	e3580000 	cmp	r8, #0
+  30bfe8:	1affffff 	bne	30bfec <next6>
+
+0030bfec <next6>:
+  30bfec:	e3a06001 	mov	r6, #1
+  30bff0:	e1a06306 	lsl	r6, r6, #6
+  30bff4:	e0068007 	and	r8, r6, r7
+  30bff8:	e3580000 	cmp	r8, #0
+  30bffc:	1a000006 	bne	30c01c <next7>
+  30c000:	e59f12b4 	ldr	r1, [pc, #692]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30c004:	e5910000 	ldr	r0, [r1]
+  30c008:	e2400001 	sub	r0, r0, #1
+  30c00c:	e5810000 	str	r0, [r1]
+  30c010:	e1a0100b 	mov	r1, fp
+  30c014:	ebfffec6 	bl	30bb34 <drawPicture2>
+  30c018:	eb00000a 	bl	30c048 <next8>
+
+0030c01c <next7>:
+  30c01c:	e3a06001 	mov	r6, #1
+  30c020:	e1a06386 	lsl	r6, r6, #7
+  30c024:	e0068007 	and	r8, r6, r7
+  30c028:	e3580000 	cmp	r8, #0
+  30c02c:	1a000005 	bne	30c048 <next8>
+  30c030:	e59f1284 	ldr	r1, [pc, #644]	; 30c2bc <Read_SNES_DONE2+0x40>
+  30c034:	e5910000 	ldr	r0, [r1]
+  30c038:	e2800001 	add	r0, r0, #1
+  30c03c:	e5810000 	str	r0, [r1]
+  30c040:	e1a0100b 	mov	r1, fp
+  30c044:	ebfffeba 	bl	30bb34 <drawPicture2>
+
+0030c048 <next8>:
+  30c048:	e3a06001 	mov	r6, #1
+  30c04c:	e1a06406 	lsl	r6, r6, #8
+  30c050:	e0068007 	and	r8, r6, r7
+  30c054:	e3580000 	cmp	r8, #0
+  30c058:	1affffff 	bne	30c05c <next9>
+
+0030c05c <next9>:
+  30c05c:	e3a06001 	mov	r6, #1
+  30c060:	e1a06486 	lsl	r6, r6, #9
+  30c064:	e0068007 	and	r8, r6, r7
+  30c068:	e3580000 	cmp	r8, #0
+  30c06c:	1affffff 	bne	30c070 <next10>
+
+0030c070 <next10>:
+  30c070:	e3a06001 	mov	r6, #1
+  30c074:	e1a06506 	lsl	r6, r6, #10
+  30c078:	e0068007 	and	r8, r6, r7
+  30c07c:	e3580000 	cmp	r8, #0
+  30c080:	1affffff 	bne	30c084 <next11>
+
+0030c084 <next11>:
+  30c084:	e3a06001 	mov	r6, #1
+  30c088:	e1a06586 	lsl	r6, r6, #11
+  30c08c:	e0068007 	and	r8, r6, r7
+  30c090:	e3580000 	cmp	r8, #0
+  30c094:	1affffff 	bne	30c098 <CheckLoopDone>
+
+0030c098 <CheckLoopDone>:
+  30c098:	eaffff49 	b	30bdc4 <startOfLoop>
+
+0030c09c <Read_SNES_DONE>:
+  30c09c:	e1a0f00e 	mov	pc, lr
+
+0030c0a0 <Read_SNES2>:
+  30c0a0:	e3a00001 	mov	r0, #1
+  30c0a4:	ebffff25 	bl	30bd40 <Write_Clock>
+  30c0a8:	e3a09000 	mov	r9, #0
+
+0030c0ac <startOfLoop2>:
+  30c0ac:	e3a00001 	mov	r0, #1
+  30c0b0:	ebffff14 	bl	30bd08 <Write_Latch>
+  30c0b4:	e3a0000c 	mov	r0, #12
+  30c0b8:	ebffff37 	bl	30bd9c <Wait>
+  30c0bc:	e3a00000 	mov	r0, #0
+  30c0c0:	ebffff10 	bl	30bd08 <Write_Latch>
+  30c0c4:	e3a05000 	mov	r5, #0
+  30c0c8:	e3a07000 	mov	r7, #0
+
+0030c0cc <pulseLoop2>:
+  30c0cc:	e3550010 	cmp	r5, #16
+  30c0d0:	aa00000c 	bge	30c108 <pulseLoopDone2>
+  30c0d4:	e3a00006 	mov	r0, #6
+  30c0d8:	ebffff2f 	bl	30bd9c <Wait>
+  30c0dc:	e3a00000 	mov	r0, #0
+  30c0e0:	ebffff16 	bl	30bd40 <Write_Clock>
+  30c0e4:	e3a00006 	mov	r0, #6
+  30c0e8:	ebffff2b 	bl	30bd9c <Wait>
+  30c0ec:	ebffff21 	bl	30bd78 <Read_Data>
+  30c0f0:	e1a04514 	lsl	r4, r4, r5
+  30c0f4:	e1877004 	orr	r7, r7, r4
+  30c0f8:	e3a00001 	mov	r0, #1
+  30c0fc:	ebffff0f 	bl	30bd40 <Write_Clock>
+  30c100:	e2855001 	add	r5, r5, #1
+  30c104:	eafffff0 	b	30c0cc <pulseLoop2>
+
+0030c108 <pulseLoopDone2>:
+  30c108:	e1590007 	cmp	r9, r7
+  30c10c:	0affffe6 	beq	30c0ac <startOfLoop2>
+  30c110:	e1a09007 	mov	r9, r7
+
+0030c114 <topCheckLoop2>:
+  30c114:	e3a06001 	mov	r6, #1
+  30c118:	e1a06006 	mov	r6, r6
+  30c11c:	e0068007 	and	r8, r6, r7
+  30c120:	e3580000 	cmp	r8, #0
+  30c124:	1affffff 	bne	30c128 <next1v2>
+
+0030c128 <next1v2>:
+  30c128:	e3a06001 	mov	r6, #1
+  30c12c:	e1a06086 	lsl	r6, r6, #1
+  30c130:	e0068007 	and	r8, r6, r7
+  30c134:	e3580000 	cmp	r8, #0
+  30c138:	1affffff 	bne	30c13c <next2v2>
+
+0030c13c <next2v2>:
+  30c13c:	e3a06001 	mov	r6, #1
+  30c140:	e1a06106 	lsl	r6, r6, #2
+  30c144:	e0068007 	and	r8, r6, r7
+  30c148:	e3580000 	cmp	r8, #0
+  30c14c:	1affffff 	bne	30c150 <next3v2>
+
+0030c150 <next3v2>:
+  30c150:	e3a06001 	mov	r6, #1
+  30c154:	e1a06186 	lsl	r6, r6, #3
+  30c158:	e0068007 	and	r8, r6, r7
+  30c15c:	e3580000 	cmp	r8, #0
+  30c160:	1affffff 	bne	30c164 <next4v2>
+
+0030c164 <next4v2>:
+  30c164:	e3a06001 	mov	r6, #1
+  30c168:	e1a06206 	lsl	r6, r6, #4
+  30c16c:	e0068007 	and	r8, r6, r7
+  30c170:	e3580000 	cmp	r8, #0
+  30c174:	1a000007 	bne	30c198 <next5v2>
+  30c178:	ebfffe96 	bl	30bbd8 <drawStartScreen>
+  30c17c:	e59f00fc 	ldr	r0, [pc, #252]	; 30c280 <Read_SNES_DONE2+0x4>
+  30c180:	e3a01f6e 	mov	r1, #440	; 0x1b8
+  30c184:	ebfffea6 	bl	30bc24 <drawMushroom>
+  30c188:	e59f0130 	ldr	r0, [pc, #304]	; 30c2c0 <Read_SNES_DONE2+0x44>
+  30c18c:	e5901000 	ldr	r1, [r0]
+  30c190:	e3a01001 	mov	r1, #1
+  30c194:	e5801000 	str	r1, [r0]
+
+0030c198 <next5v2>:
+  30c198:	e3a06001 	mov	r6, #1
+  30c19c:	e1a06286 	lsl	r6, r6, #5
+  30c1a0:	e0068007 	and	r8, r6, r7
+  30c1a4:	e3580000 	cmp	r8, #0
+  30c1a8:	1a000007 	bne	30c1cc <next6v2>
+  30c1ac:	ebfffe89 	bl	30bbd8 <drawStartScreen>
+  30c1b0:	e59f00c8 	ldr	r0, [pc, #200]	; 30c280 <Read_SNES_DONE2+0x4>
+  30c1b4:	e59f1108 	ldr	r1, [pc, #264]	; 30c2c4 <Read_SNES_DONE2+0x48>
+  30c1b8:	ebfffe99 	bl	30bc24 <drawMushroom>
+  30c1bc:	e59f00fc 	ldr	r0, [pc, #252]	; 30c2c0 <Read_SNES_DONE2+0x44>
+  30c1c0:	e5901000 	ldr	r1, [r0]
+  30c1c4:	e3a01000 	mov	r1, #0
+  30c1c8:	e5801000 	str	r1, [r0]
+
+0030c1cc <next6v2>:
+  30c1cc:	e3a06001 	mov	r6, #1
+  30c1d0:	e1a06306 	lsl	r6, r6, #6
+  30c1d4:	e0068007 	and	r8, r6, r7
+  30c1d8:	e3580000 	cmp	r8, #0
+  30c1dc:	1affffff 	bne	30c1e0 <next7v2>
+
+0030c1e0 <next7v2>:
+  30c1e0:	e3a06001 	mov	r6, #1
+  30c1e4:	e1a06386 	lsl	r6, r6, #7
+  30c1e8:	e0068007 	and	r8, r6, r7
+  30c1ec:	e3580000 	cmp	r8, #0
+  30c1f0:	1affffff 	bne	30c1f4 <next8v2>
+
+0030c1f4 <next8v2>:
+  30c1f4:	e3a06001 	mov	r6, #1
+  30c1f8:	e1a06406 	lsl	r6, r6, #8
+  30c1fc:	e0068007 	and	r8, r6, r7
+  30c200:	e3580000 	cmp	r8, #0
+  30c204:	1a00000c 	bne	30c23c <next9v2>
+  30c208:	ebfffe19 	bl	30ba74 <EraseScreen>
+  30c20c:	e59f00ac 	ldr	r0, [pc, #172]	; 30c2c0 <Read_SNES_DONE2+0x44>
+  30c210:	e5901000 	ldr	r1, [r0]
+  30c214:	e3510000 	cmp	r1, #0
+  30c218:	0a000006 	beq	30c238 <quit>
+  30c21c:	ebfffe31 	bl	30bae8 <drawPicture>
+  30c220:	e3a00000 	mov	r0, #0
+  30c224:	e59f1058 	ldr	r1, [pc, #88]	; 30c284 <Read_SNES_DONE2+0x8>
+  30c228:	e1a0a000 	mov	sl, r0
+  30c22c:	e1a0b001 	mov	fp, r1
+  30c230:	ebfffe3f 	bl	30bb34 <drawPicture2>
+  30c234:	eafffedf 	b	30bdb8 <Read_SNES>
+
+0030c238 <quit>:
+  30c238:	eafffe0c 	b	30ba70 <haltLoop$>
+
+0030c23c <next9v2>:
+  30c23c:	e3a06001 	mov	r6, #1
+  30c240:	e1a06486 	lsl	r6, r6, #9
+  30c244:	e0068007 	and	r8, r6, r7
+  30c248:	e3580000 	cmp	r8, #0
+  30c24c:	1affffff 	bne	30c250 <next10v2>
+
+0030c250 <next10v2>:
+  30c250:	e3a06001 	mov	r6, #1
+  30c254:	e1a06506 	lsl	r6, r6, #10
+  30c258:	e0068007 	and	r8, r6, r7
+  30c25c:	e3580000 	cmp	r8, #0
+  30c260:	1affffff 	bne	30c264 <next11v2>
+
+0030c264 <next11v2>:
+  30c264:	e3a06001 	mov	r6, #1
+  30c268:	e1a06586 	lsl	r6, r6, #11
+  30c26c:	e0068007 	and	r8, r6, r7
+  30c270:	e3580000 	cmp	r8, #0
+  30c274:	1affffff 	bne	30c278 <CheckLoopDone2>
+
+0030c278 <CheckLoopDone2>:
+  30c278:	eaffff8b 	b	30c0ac <startOfLoop2>
+
+0030c27c <Read_SNES_DONE2>:
+  30c27c:	e1a0f00e 	mov	pc, lr
+  30c280:	0000014a 	.word	0x0000014a
+  30c284:	00000267 	.word	0x00000267
+  30c288:	000090e0 	.word	0x000090e0
+  30c28c:	0018b0fc 	.word	0x0018b0fc
+  30c290:	0018a8fc 	.word	0x0018a8fc
+  30c294:	0018a0fc 	.word	0x0018a0fc
+  30c298:	0000a0fc 	.word	0x0000a0fc
+  30c29c:	000098fc 	.word	0x000098fc
+  30c2a0:	3f200000 	.word	0x3f200000
+  30c2a4:	3f200004 	.word	0x3f200004
+  30c2a8:	3f200028 	.word	0x3f200028
+  30c2ac:	3f20001c 	.word	0x3f20001c
+  30c2b0:	3f200034 	.word	0x3f200034
+  30c2b4:	3f003004 	.word	0x3f003004
+  30c2b8:	000090f4 	.word	0x000090f4
+  30c2bc:	000090f0 	.word	0x000090f0
+  30c2c0:	000090f8 	.word	0x000090f8
+  30c2c4:	000001f6 	.word	0x000001f6
