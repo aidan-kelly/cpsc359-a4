@@ -1,0 +1,6 @@
+	.section data
+	.global
+	.align	4
+
+pic:
+	
